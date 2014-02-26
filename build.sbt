@@ -1,4 +1,5 @@
 name := "Auto Grader"
+
 description := "Automatic multiple choice grading based on OpenCV"
 
 scalaVersion := "2.10.3"
