@@ -5,16 +5,14 @@ import com.johnathangilday.autograder.domain.Answer
 
 class ProcessSheetJobSpec extends path.FunSpec with Matchers {
 
-  describe("happy path") {
+  describe("process one sheet of marked answers") {
 
-    it("should process testSheet1.jpg correctly") {
+    it("should process detect circles") {
       // GIVEN happy path testSheet1.jpg in test resources
       val in = getClass.getResource("/marked-test-sample.jpg").openStream()
 
-      // WHEN process testSheet1.jpg
+      // WHEN process marked-test-sample
 
-      // THEN answers are C, D, B, C, E
-      val expectedAnswers = Seq(Answer('C'), Answer('D'), Answer('B'), Answer('C'), Answer('E'))
     }
   }
 
