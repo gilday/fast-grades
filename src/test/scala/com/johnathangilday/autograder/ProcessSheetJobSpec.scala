@@ -1,18 +1,22 @@
 package com.johnathangilday.autograder
 
-import org.scalatest.{Matchers, path}
-import com.johnathangilday.autograder.domain.Answer
+import org.scalatest.{FunSpec, Matchers}
+import com.johnathangilday.autograder.testutils.TestImgFactory
 
-class ProcessSheetJobSpec extends path.FunSpec with Matchers {
+class ProcessSheetJobSpec extends FunSpec with Matchers {
+
+  val processor = new SheetProcessor
 
   describe("process one sheet of marked answers") {
 
     it("should process detect circles") {
       // GIVEN happy path testSheet1.jpg in test resources
-      val in = getClass.getResource("/marked-test-sample.jpg").openStream()
+      val img = TestImgFactory.markedTestSample
 
       // WHEN process marked-test-sample
+      processor.processImage(img)
 
+      // THEN nothing for now
     }
   }
 

@@ -8,5 +8,8 @@ libraryDependencies ++= Seq(
   "com.google.guava" % "guava" % "16.0.1",
   "org.boofcv" % "ip" % "0.16",
   "org.boofcv" % "io" % "0.16",
-  "org.scalatest" %% "scalatest" % "2.0" % "test"
+  "org.boofcv" % "visualize" % "0.16",
+  "ch.qos.logback" % "logback-classic" % "1.1.1",
+  "org.scalatest" %% "scalatest" % "2.0" % "test",
+  "com.typesafe" %% "scalalogging-slf4j" % "1.0.1"
 )
