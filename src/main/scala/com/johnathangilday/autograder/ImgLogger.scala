@@ -1,6 +1,7 @@
 package com.johnathangilday.autograder
 
 import boofcv.core.image.ConvertBufferedImage
+import boofcv.gui.binary.VisualizeBinaryData
 import boofcv.struct.image.ImageUInt8
 import com.johnathangilday.autograder.exceptions.AppException
 import java.awt.image.BufferedImage
@@ -49,7 +50,15 @@ class ImgLogger(dir: File) {
   }
 
   def debug(img: BufferedImage, name: String) {
-    writeBufferedImage(img, name)
+    if (level == Debug)
+      writeBufferedImage(img, name)
+  }
+
+  def debugBinary(img: ImageUInt8, name: String) {
+    if (level == Debug) {
+      val bufImg = VisualizeBinaryData.renderBinary(img, null)
+      writeBufferedImage(bufImg, name)
+    }
   }
 
   private def writeBufferedImage(bufImg: BufferedImage, name: String) {

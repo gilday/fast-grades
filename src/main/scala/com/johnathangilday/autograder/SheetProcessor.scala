@@ -1,16 +1,12 @@
 package com.johnathangilday.autograder
 
-import boofcv.alg.feature.shapes.ShapeFittingOps
 import boofcv.alg.filter.binary.{Contour, BinaryImageOps, ThresholdImageOps}
 import boofcv.alg.misc.ImageStatistics
 import boofcv.core.image.ConvertBufferedImage
-import boofcv.gui.binary.VisualizeBinaryData
-import boofcv.gui.feature.VisualizeShapes
 import boofcv.io.image.UtilImageIO
 import boofcv.struct.image.{ImageFloat32, ImageUInt8}
 import com.typesafe.scalalogging.slf4j.Logging
 import java.awt.image.BufferedImage
-import java.awt.{BasicStroke, Color}
 import java.io.File
 import scala.collection.JavaConversions._
 
@@ -28,11 +24,7 @@ class SheetProcessor extends Logging {
     ImgLogger.debug(bufImg, "original")
     val binary = convertToBinary(bufImg)
     val binaryNoNoise = removeNoise(binary)
-    ImgLogger.debug(VisualizeBinaryData.renderBinary(binary, null), "binary")
-    ImgLogger.debug(VisualizeBinaryData.renderBinary(binaryNoNoise, null), "binary-no-noise")
     val circles = findCircles(binaryNoNoise)
-    val debugImage = drawCirclesOnImage(binaryNoNoise, circles)
-    ImgLogger.debug(debugImage, "circles")
   }
 
   def loadBufferedImage(file: File): BufferedImage = UtilImageIO.loadImage(file.getAbsolutePath)
@@ -61,19 +53,5 @@ class SheetProcessor extends Logging {
     // this is less efficient, but easier to code.
     val filtered = BinaryImageOps.erode8(binary, null)
     BinaryImageOps.dilate8(filtered, null)
-  }
-
-  def drawCirclesOnImage(image: ImageUInt8, contours: List[Contour]): BufferedImage = {
-    val bufImg = VisualizeBinaryData.renderBinary(image, null)
-    // Fit an ellipse to each external contour and draw the results
-    val g2 = bufImg.createGraphics()
-    g2.setStroke(new BasicStroke(3))
-    g2.setColor(Color.RED)
-
-    contours.foreach(c => {
-      val ellipse = ShapeFittingOps.fitEllipse_I32(c.external, 0, false, null)
-      VisualizeShapes.drawEllipse(ellipse.shape, g2)
-    })
-    bufImg
   }
 }
