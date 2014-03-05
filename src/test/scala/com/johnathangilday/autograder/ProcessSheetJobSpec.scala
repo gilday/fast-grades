@@ -5,9 +5,9 @@ import boofcv.alg.filter.binary.Contour
 import boofcv.gui.binary.VisualizeBinaryData
 import boofcv.gui.feature.VisualizeShapes
 import boofcv.struct.image.ImageUInt8
-import com.johnathangilday.autograder.model.Row
 import com.johnathangilday.autograder.testutils.TestImgFactory
 import com.johnathangilday.autograder.utils.Files2
+import georegression.struct.shapes.EllipseRotated_F64
 import java.awt.image.BufferedImage
 import java.awt.{Color, BasicStroke}
 import java.io.File
@@ -45,13 +45,36 @@ class ProcessSheetJobSpec extends FunSpec with Matchers {
 
     // THEN returns a sequence of 10 Rows each with 4 choices
     rows should have size 10
-    val problemNumbers = rows.map(_.problem)
-    isIncreasingByOne(problemNumbers) should be(true)
     rows.foreach(r => {
-      r.circles should have size 4
-      val ellipses = r.circles.map(c => ShapeFittingOps.fitEllipse_I32(c.external, 0, false, null).shape)
-      val xValues = ellipses.map(_.getCenter.getX)
+      r should have size 4
+      val xValues = r.map(_.getCenter.getX)
       isMonotonicallyIncreasing(xValues) should be(true)
+    })
+  }
+
+  it("should detect which circles are marked") {
+    // GIVEN marked-test-sample.jpg in test resources
+    val img = TestImgFactory.markedTestSample
+
+    // WHEN detect marks
+    val rows = testFindMarks(img).toList
+    rows.foreach(r => println(r))
+
+    // THEN return a sequence of 10 rowseach with one answer marked true
+    assert (rows match {
+      case Seq(
+        Seq(true, false, false, false),
+        Seq(false, true, false, false),
+        Seq(false, false, true, false),
+        Seq(false, false, false, true),
+        Seq(false, true, false, false),
+        Seq(false, false, true, false),
+        Seq(true, false, false, false),
+        Seq(false, true, false, false),
+        Seq(false, false, true, false),
+        Seq(false, false, false, true)
+      ) => true
+      case _ => false
     })
   }
 
@@ -69,11 +92,22 @@ class ProcessSheetJobSpec extends FunSpec with Matchers {
   /**
    * Steps 1 - 4 only (for testing steps 1 through 4)
    */
-  private def testFindRows(bufImg: BufferedImage): Seq[Row] = {
+  private def testFindRows(bufImg: BufferedImage): Seq[Seq[EllipseRotated_F64]] = {
     val binary = processor.convertToBinary(bufImg)
     val noNoise = processor.removeNoise(binary)
     val circles = processor.findCircles(noNoise)
     processor.findRows(noNoise, circles)
+  }
+
+  /**
+   * Steps 1 - 5 only (for testing steps 1 through 5)
+   */
+  private def testFindMarks(bufImg: BufferedImage): Seq[Seq[Boolean]] = {
+    val binary = processor.convertToBinary(bufImg)
+    val noNoise = processor.removeNoise(binary)
+    val circles = processor.findCircles(noNoise)
+    val rows = processor.findRows(noNoise, circles)
+    processor.findMarks(noNoise, rows)
   }
 
   private def drawCirclesOnImage(image: ImageUInt8, contours: List[Contour]): BufferedImage = {
@@ -97,16 +131,6 @@ class ProcessSheetJobSpec extends FunSpec with Matchers {
     g.drawImage(bufImg, 0, 0, null)
     g.dispose()
     color
-  }
-
-  private def isIncreasingByOne(ints: Seq[Int]): Boolean = {
-    var previous = ints.min - 1
-    ints.foreach(i => {
-      if (i != previous + 1)
-        return false
-      previous = i
-    })
-    true
   }
 
   private def isMonotonicallyIncreasing(doubles: Seq[Double]): Boolean = {

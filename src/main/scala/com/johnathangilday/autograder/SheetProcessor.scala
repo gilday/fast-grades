@@ -5,9 +5,10 @@ import boofcv.alg.filter.binary.{Contour, BinaryImageOps, ThresholdImageOps}
 import boofcv.alg.misc.ImageStatistics
 import boofcv.core.image.ConvertBufferedImage
 import boofcv.io.image.UtilImageIO
-import boofcv.struct.image.{ImageFloat32, ImageUInt8}
+import boofcv.struct.image.ImageUInt8
 import com.johnathangilday.autograder.model.Row
 import com.typesafe.scalalogging.slf4j.Logging
+import georegression.struct.point.Point2D_F64
 import georegression.struct.shapes.EllipseRotated_F64
 import java.awt.image.BufferedImage
 import java.io.File
@@ -72,20 +73,41 @@ class SheetProcessor extends Logging {
   /**
    * Step 4
    */
-  def findRows(binary: ImageUInt8, circles: List[Contour]): Seq[Row] = {
+  def findRows(binary: ImageUInt8, circles: List[Contour]): Seq[Seq[EllipseRotated_F64]] = {
     //ShapeFittingOps.fitEllipse_I32(c.external, 0, false, null).shape)
     val contourEllipsePairs: List[(Contour, EllipseRotated_F64)] = circles.map(c => (c, ShapeFittingOps.fitEllipse_I32(c.external, 0, false, null).shape))
     val sortedByY = contourEllipsePairs.sortBy(_._2.getCenter.getY)
-    var i = 0
     sortedByY.grouped(Row.numChoices).map(g => {
-      i = i + 1
-      val sortedByX = g.sortBy(_._2.getCenter.getX).map(_._1)
-      new Row(i, sortedByX)
+      g.sortBy(_._2.getCenter.getX).map(_._2)
     }).toSeq
   }
 
-  private def loadBufferedImage(file: File): BufferedImage = UtilImageIO.loadImage(file.getAbsolutePath)
+  /**
+   * Step 5
+   * Process the mark using the ratio of marked pixels over total pixels
+   */
+  def findMarks(binary: ImageUInt8, rows: Seq[Seq[EllipseRotated_F64]]): Seq[Seq[Boolean]] = {
+    rows.map(r => {
+      r.map(c => {
+        processMark(binary, c)
+      })
+    })
+  }
 
-  // the mean pixel value is often a reasonable threshold when creating a binary image
-  private def calculateMeanPixel(img: ImageFloat32): Double = ImageStatistics.mean(img)
+
+  /**
+   * TODO improve this - determine if it's marked by turning the ellipse into a circle and taking a subimage of the original
+   * I'm so ignorant of computer vision!
+   */
+  private def processMark(binary: ImageUInt8, ellipse: EllipseRotated_F64): Boolean = {
+    val center: Point2D_F64 = ellipse.getCenter
+    val centerX = center.getX.toInt
+    val centerY = center.getY.toInt
+    val radius = (ellipse.getA max ellipse.getB).toInt
+    val subImage = binary.subimage(centerX - radius, centerY - radius, centerX + radius, centerY + radius, null)
+
+    ImageStatistics.sum(subImage) / Math.pow(radius * 2, 2) > 0.5 // More than half the pixels must be marked
+  }
+
+  private def loadBufferedImage(file: File): BufferedImage = UtilImageIO.loadImage(file.getAbsolutePath)
 }

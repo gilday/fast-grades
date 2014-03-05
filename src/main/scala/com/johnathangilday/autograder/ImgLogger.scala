@@ -20,6 +20,7 @@ object ImgLogger {
   def setLevelToDebug() = instance.setLevelToDebug()
   def debug(img: BufferedImage, name: String) = instance.debug(img, name)
   def debug(img: ImageUInt8, name: String) = instance.debug(img, name)
+  def debugBinary(img: ImageUInt8, name: String) = instance.debugBinary(img, name)
 
   private def initDir(): File = {
     val dir = new File("log")
@@ -44,7 +45,13 @@ class ImgLogger(dir: File) {
 
   def debug(img: ImageUInt8, name: String) {
     if (level == Debug) {
-      val bufImg = ConvertBufferedImage.extractBuffered(img)
+      val imgToConvert =
+        if (img.isSubimage) {
+          img._createNew(img.width, img.height)
+        } else {
+          img
+        }
+      val bufImg = ConvertBufferedImage.extractBuffered(imgToConvert)
       writeBufferedImage(bufImg, name)
     }
   }
@@ -56,13 +63,35 @@ class ImgLogger(dir: File) {
 
   def debugBinary(img: ImageUInt8, name: String) {
     if (level == Debug) {
-      val bufImg = VisualizeBinaryData.renderBinary(img, null)
+      val imgToConvert =
+        if (img.isSubimage) {
+          img._createNew(img.width, img.height)
+        } else {
+          img
+        }
+      val bufImg = VisualizeBinaryData.renderBinary(imgToConvert, null)
       writeBufferedImage(bufImg, name)
     }
   }
 
   private def writeBufferedImage(bufImg: BufferedImage, name: String) {
-    ImageIO.write(bufImg, "jpg", new File(dir, timestamp + "." + name + ".jpg"))
+    val file = getNextFile(name, None)
+    ImageIO.write(bufImg, "jpg", file)
+  }
+
+  private def getNextFile(name: String, number: Option[Int] = None): File = {
+    val file =
+      if (number.isDefined)
+        new File(dir, timestamp + "." + name + "-" + number.get + ".jpg")
+      else
+        new File(dir, timestamp + "." + name + ".jpg")
+    if (file.exists()) {
+      val nextInt = number.getOrElse(0) + 1
+      getNextFile(name, Some(nextInt))
+    }
+    else {
+      file
+    }
   }
 
   private def timestamp: String = {
