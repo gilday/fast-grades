@@ -52,6 +52,7 @@ $RECYCLE.BIN/
 
 .*
 !.gitignore
+!.travis.yml
 *~
 
 
