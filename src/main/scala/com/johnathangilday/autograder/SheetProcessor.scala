@@ -47,7 +47,7 @@ class SheetProcessor extends Logging {
     val binary = new ImageUInt8(input.width, input.height)
     //    val label = new ImageSInt32(input.width,input.height)
     // create a binary image by thresholding
-    ThresholdImageOps.threshold(input, binary, 20, true)
+    ThresholdImageOps.threshold(input, binary, 200, true)
     binary
   }
 

@@ -9,4 +9,6 @@ import java.awt.image.BufferedImage
 object TestImgFactory {
 
   def markedTestSample: BufferedImage = UtilImageIO.loadImage(getClass.getResource("/marked-test-sample.jpg"))
+
+  def pencilTestSample: BufferedImage = UtilImageIO.loadImage(getClass.getResource("/pencil-test-sample.jpg"))
 }
