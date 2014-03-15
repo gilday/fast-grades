@@ -31,6 +31,10 @@ module.exports = function (grunt) {
           livereload: true
         }
       },
+      less: {
+        files: ['<%= yeoman.app %>/styles/main.less'],
+        tasks: ['less']
+      },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
         tasks: ['newer:copy:styles']
@@ -85,6 +89,28 @@ module.exports = function (grunt) {
         '<%= yeoman.app %>/scripts/{,*/}*.js'
       ]
     },
+
+    // compile less css
+    less: {
+      dist: {
+        files: [{
+          expand: true, // Enable dynamic expansion
+          cwd: '<%= yeoman.app %>/styles/', // Src matches are relative to this path
+          src: ['main.less'],
+          dest: '.tmp/styles', // Destination path prefix
+          ext: '.css' // Dest filepaths will have this extension
+        }]
+      },
+      server: {
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.app %>/styles/',
+          src: ['main.less', 'print.less'],
+          dest: '.tmp/styles/',
+          ext: '.css'
+        }]
+      }
+  },
 
     // Empties folders to start fresh
     clean: {
@@ -286,6 +312,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'less:server',
       'concurrent:server',
       'connect:livereload',
       'watch'
@@ -299,6 +326,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'less:dist',
     'useminPrepare',
     'concurrent:dist',
     'concat',
