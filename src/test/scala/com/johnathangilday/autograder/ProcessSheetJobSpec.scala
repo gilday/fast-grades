@@ -11,7 +11,7 @@ import georegression.struct.shapes.EllipseRotated_F64
 import java.awt.image.BufferedImage
 import java.awt.{Color, BasicStroke}
 import java.io.File
-import org.scalatest.{FlatSpec, FunSpec, Matchers}
+import org.scalatest.{FlatSpec, Matchers}
 
 class ProcessSheetJobSpec extends FlatSpec with Matchers {
 
@@ -73,8 +73,9 @@ class ProcessSheetJobSpec extends FlatSpec with Matchers {
   "A sample exam (marked with pencil)" should behave like markedTestImage(TestImgFactory.pencilTestSample)
 
 
-
-
+  // ===================
+  // PRIVATE
+  // ===================
 
   /**
    * Steps 1 - 3 only (for testing steps 1 through 3)
