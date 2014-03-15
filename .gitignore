@@ -1,8 +1,13 @@
-# Project
+# Fast Grades
+
 log
 
-# OpenCV Native Lib
-lib
+# Yeoman
+
+node_modules
+bower_components
+.tmp
+
 
 # Java
 

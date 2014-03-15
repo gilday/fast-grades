@@ -1,6 +1,7 @@
 {
   "name": "fastgrades",
   "version": "0.0.0",
+  "appPath": "src/main/webapp",
   "dependencies": {
     "angular": "1.2.11",
     "requirejs": "~2.1.10"
