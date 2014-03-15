@@ -13,3 +13,15 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "2.0" % "test",
   "com.typesafe" %% "scalalogging-slf4j" % "1.0.1"
 )
+
+lazy val grunt = taskKey[Unit]("Kicks off a Grunt.js build and stores the built front-end in target/webapp")
+
+grunt := {
+  val log = streams.value.log
+  log.info("Starting Grunt.js")
+  val code = "grunt build" ! log
+  code match {
+    case 0 => log.info("built webapp is in target/webapp")
+    case _ => throw new Exception("Grunt.js build failed")
+  }
+}

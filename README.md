@@ -47,6 +47,6 @@ I created this simple model prior to the story writing workshop to drive discuss
 Bookmarks and references
 
 * [Yo + Travis + Github Pages](https://coderwall.com/p/ndaemg) auto deploy a built yeoman project to gh-pages
-* [sbt + Grunt](https://github.com/joprice/sbt-grunt) to call Grunt build from sbt
+* [sbt + Grunt](https://github.com/parkotron/sbt-grunt-task) to call Grunt build from sbt
 * [Convert PDF](http://www.icesoft.org/wiki/display/PDF/Converting+PDF+Page+Renderings) apache licensed solution for PDF -> BufferedImage
 * [JHU VMs](https://support.cs.jhu.edu/wiki/Requesting_A_Virtual_Machine) potential deployment platform
