@@ -5,4 +5,10 @@ jdk:
   - oraclejdk7
   - openjdk6
 
+before_install:
+  - sudo npm install -g grunt-cli
+  - sudo npm install -g bower
+  - npm install
+  - bower install
+
 script: sbt ++$TRAVIS_SCALA_VERSION clean test grunt
