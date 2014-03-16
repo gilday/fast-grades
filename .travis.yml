@@ -9,7 +9,7 @@ node_js: 0.10
 before_install:
   - sudo $(type -P npm) install -g grunt-cli
   - sudo $(type -P npm) install -g bower
-  - $(type -P npm) install
+  - sudo $(type -P npm) install
   - bower install
 
 script: sbt ++$TRAVIS_SCALA_VERSION clean test grunt
