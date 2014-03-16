@@ -1,7 +1,9 @@
+'use strict';
 /*jshint unused: vars */
-define(['angular', 'controllers/main']/*deps*/, function (angular, MainCtrl)/*invoke*/ {
-  'use strict';
 
-  return angular.module('fastgradesApp', ['fastgradesApp.controllers.MainCtrl',
-/*angJSDeps*/]);
+/**
+ * Define main module
+ */
+define(['angular'], function (angular) {
+  return angular.module('fastgrades', []);
 });

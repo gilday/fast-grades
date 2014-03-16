@@ -1,15 +1,13 @@
+'use strict';
+
 /*jshint unused: vars */
 require.config({
   paths: {
-    angular: '../../bower_components/angular/angular',
-    angularMocks: '../../bower_components/angular-mocks/angular-mocks',
-    text: '../../bower_components/requirejs-text/text'
+    angular: '../../bower_components/angular/angular'
   },
   shim: {
-    'angular' : {'exports' : 'angular'},
-    'angularMocks': {
-      deps:['angular'],
-      'exports':'angular.mock'
+    angular: {
+      exports: 'angular'
     }
   },
   priority: [
@@ -22,9 +20,9 @@ window.name = 'NG_DEFER_BOOTSTRAP!';
 
 require([
   'angular',
-  'app'
-], function(angular, app) {
-  'use strict';
+  'app',
+  'controllers/main'
+], function (angular, app) {
   /* jshint ignore:start */
   var $html = angular.element(document.getElementsByTagName('html')[0]);
   /* jshint ignore:end */

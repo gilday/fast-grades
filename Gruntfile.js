@@ -17,8 +17,7 @@ module.exports = function (grunt) {
 
     // Project settings
     yeoman: {
-      // configurable paths
-      app: require('./bower.json').appPath,
+      app: 'src/main/webapp',
       dist: 'target/webapp'
     },
 
@@ -110,7 +109,7 @@ module.exports = function (grunt) {
           ext: '.css'
         }]
       }
-  },
+    },
 
     // Empties folders to start fresh
     clean: {
@@ -286,8 +285,7 @@ module.exports = function (grunt) {
         options: {
           baseUrl: '<%= yeoman.app %>/scripts',
           paths: {
-            angular: '../bower_components/angular/angular',
-            text: '../bower_components/requirejs-text/text'
+            angular: '../bower_components/angular/angular'
           },
           shim: {
             'angular' : {'exports' : 'angular'},
@@ -297,8 +295,8 @@ module.exports = function (grunt) {
             mangle: false
           },
           include: ['angular'],
-          name: 'bootstrap',
-          out: '<%= yeoman.app %>/scripts/bootstrap-built.js'
+          mainConfigFile: '<%= yeoman.app %>/scripts/config.js',
+          out: '<%= yeoman.app %>/scripts/fastgrades.min.js'
         }
       }
     }

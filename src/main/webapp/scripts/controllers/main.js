@@ -1,12 +1,15 @@
-define(['angular'], function (angular) {
-  'use strict';
+'use strict';
 
-  angular.module('fastgradesApp.controllers.MainCtrl', [])
-    .controller('MainCtrl', function ($scope) {
-      $scope.awesomeThings = [
-        'HTML5 Boilerplate',
-        'AngularJS',
-        'Karma'
-      ];
-    });
+define(['app'], function (app) {
+
+  var mainCtrl = function ($scope) {
+    $scope.awesomeThings = [
+      'HTML5 Boilerplate',
+      'AngularJS',
+      'Karma'
+    ];
+  };
+
+  app.controller('MainCtrl', ['$scope', mainCtrl]);
+  return mainCtrl;
 });

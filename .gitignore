@@ -59,6 +59,7 @@ $RECYCLE.BIN/
 !.gitignore
 !.travis.yml
 !.bowerrc
+!.jshintrc
 *~
 
 
