@@ -2,7 +2,6 @@
   "name": "fastgrades",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "1.2.11",
-    "requirejs": "~2.1.10"
+    "angular": "1.2.11"
   }
 }

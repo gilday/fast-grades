@@ -1,21 +1,37 @@
 <!doctype html>
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" id="ng-app" ng-app=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" id="ng-app" ng-app=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" ng-app> <!--<![endif]-->
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-  </head>
-  <body ng-app="fastgrades">
-    <!-- Add your site or application content here -->
-    <div class="container" ng-include="'views/main.html'" ng-controller="MainCtrl"></div>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app="fastgrades"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title>FastGrades</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+    </head>
+    <body>
+        <div>
+          <h1>Fast Grades</h1>
+          <p>Frameworks I'm using (angular test)</p>
+          <div ng-controller="FrameworkCtrl">
+            <ul>
+                <li ng-repeat="f in frameworks">{{f}}</li>
+            </ul>
+        </div>
 
-    <script src="bower_components/requirejs/require.js" data-main="scripts/config.js"></script>
-  </body>
+
+        <!-- build:js scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/angular/angular.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:js({src/main/webapp,.tmp}) scripts/main.js -->
+        <script src="scripts/main.js"></script>
+        <script src="scripts/app.js"></script>
+        <!-- endbuild -->
+</body>
 </html>

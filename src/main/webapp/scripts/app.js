@@ -4,6 +4,8 @@
 /**
  * Define main module
  */
-define(['angular'], function (angular) {
-  return angular.module('fastgrades', []);
-});
+var fastgrades = angular.module('fastgrades', []);
+
+fastgrades.controller('FrameworkCtrl', ['$scope', function ($scope) {
+	$scope.frameworks = ['Angular', 'JQuery', 'Bootstrap'];
+}]);
