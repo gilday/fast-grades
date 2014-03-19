@@ -3,8 +3,10 @@ scala:
   - 2.10.3
 jdk:
   - oraclejdk7
-  - openjdk6
 node_js: 0.1
+branches:
+  only:
+    - master
 before_install:
   - sudo $(type -P npm) install -g grunt-cli
   - sudo $(type -P npm) install -g bower
