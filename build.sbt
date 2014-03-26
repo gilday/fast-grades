@@ -1,3 +1,5 @@
+import com.typesafe.sbt.SbtStartScript
+
 name := "Auto Grader"
 
 description := "Automatic multiple choice grading based on OpenCV"
@@ -20,6 +22,8 @@ libraryDependencies ++= Seq(
   "org.json4s" %% "json4s-native" % "3.2.8",
   "com.typesafe.akka" %% "akka-actor" % "2.3.0"
 )
+
+seq(SbtStartScript.startScriptForClassesSettings: _*)
 
 lazy val grunt = taskKey[Unit]("Kicks off a Grunt.js build and stores the built front-end in target/webapp")
 
