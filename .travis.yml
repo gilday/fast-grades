@@ -35,6 +35,7 @@ after_success:
 - git clean -df
 deploy:
   provider: heroku
+  buildpack: https://github.com/heroku/heroku-buildpack-scala
   app: fast-grades
   api_key:
     secure: OqC3uRTosFn1DiOB2Poew2F8gcMsClm3TqEz3H3XifEo0Cz8JrLEGl75Sbfk1bOqUs6LiiJiquIQJNyVmZSRepyBccIlzfofp4khc8m79YO1PU1vybehzI05tE9NvJCOznzqW3wr4wkyuVjieq/Dm8W8tGPiMd3WRqq+hXOGKKs=
