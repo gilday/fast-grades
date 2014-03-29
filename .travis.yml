@@ -30,6 +30,9 @@ after_success:
 - git commit -am "adding built site files to gh-pages [ci skip]"
 - git push https://${GH_OAUTH_TOKEN}@github.com/gilday/fast-grades HEAD:gh-pages >
   /dev/null 2>&1
+- cd ..
+- git reset --hard
+- git checkout master
 deploy:
   provider: heroku
   app: fast-grades
