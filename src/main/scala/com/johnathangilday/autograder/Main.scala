@@ -14,7 +14,7 @@ object Main extends App {
   implicit val system = ActorSystem("auto-grader")
 
   // create and start our service actor
-  val service = system.actorOf(Props[HelloHttpActor], "ping-service")
+  val service = system.actorOf(Props[HelloHttpActor], "hello-service")
 
   // start a new HTTP server on port 8080 with our service actor as the handler
   IO(Http) ! Http.Bind(service, host, port)

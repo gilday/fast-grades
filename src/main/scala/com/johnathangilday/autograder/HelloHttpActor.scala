@@ -8,11 +8,9 @@ class HelloHttpActor extends HttpServiceActor with Json4sSupport {
   implicit def json4sFormats: Formats = DefaultFormats
 
   override def receive: Receive = runRoute {
-    path("greeting") {
-      get {
-        complete {
-          Greeting("Hello, World!")
-        }
+    get {
+      complete {
+        Greeting("Hello, World!")
       }
     }
   }
