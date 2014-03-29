@@ -32,7 +32,7 @@ after_success:
   /dev/null 2>&1
 - cd ..
 - git reset --hard
-- git checkout master
+- git clean -df
 deploy:
   provider: heroku
   app: fast-grades
