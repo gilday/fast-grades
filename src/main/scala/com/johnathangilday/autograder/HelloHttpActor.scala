@@ -10,7 +10,7 @@ class HelloHttpActor extends HttpServiceActor with Json4sSupport {
   override def receive: Receive = runRoute {
     get {
       complete {
-        Greeting("Hello, World!")
+        Greeting("Hello, World!!")
       }
     }
   }
