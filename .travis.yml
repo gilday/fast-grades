@@ -1,33 +1,37 @@
 language: scala
 scala:
-  - 2.10.3
+- 2.10.3
 jdk:
-  - oraclejdk7
+- oraclejdk7
 node_js: 0.1
 branches:
   only:
-    - master
+  - master
 before_install:
-  - sudo $(type -P npm) install -g grunt-cli
-  - sudo $(type -P npm) install -g bower
-  - sudo $(type -P npm) install
-  - bower install
+- sudo $(type -P npm) install -g grunt-cli
+- sudo $(type -P npm) install -g bower
+- sudo $(type -P npm) install
+- bower install
 script: sbt ++$TRAVIS_SCALA_VERSION clean test grunt
 env:
   global:
     secure: Mv6YWhcoTDRyLVFKwJosx+EFJ2KwUI+BguYJ6R7qsmHlW4nYz/SwFV4zlEdkUOrncgRXOetsH7xSvgtOA1wrM8az5UWhYKVnVN2W0YIMqH3osNs/8fPRH3UeaJkmXOqEOo4Ib+JPJVw95pVHZDcjCjQQCGX51c+9ovnMS7P/808=
-
 after_success:
-  # Any command that using GH_OAUTH_TOKEN must pipe the output to /dev/null to not expose your oauth token
-  - git submodule add -b gh-pages https://${GH_OAUTH_TOKEN}@github.com/gilday/fast-grades site > /dev/null 2>&1
-  - cd site
-  - if git checkout gh-pages; then git checkout -b gh-pages; fi
-  - git rm -r .
-  - cp -R ../target/webapp/* .
-  - cp ../target/webapp/.* .
-  - git add -f .
-  - git config user.email "me@johnathangilday.com"
-  - git config user.name "Johnathan Gilday"
-  - git commit -am "adding built site files to gh-pages [ci skip]"
-  # Any command that using GH_OAUTH_TOKEN must pipe the output to /dev/null to not expose your oauth token
-  - git push https://${GH_OAUTH_TOKEN}@github.com/gilday/fast-grades HEAD:gh-pages > /dev/null 2>&1
+- git submodule add -b gh-pages https://${GH_OAUTH_TOKEN}@github.com/gilday/fast-grades
+  site > /dev/null 2>&1
+- cd site
+- if git checkout gh-pages; then git checkout -b gh-pages; fi
+- git rm -r .
+- cp -R ../target/webapp/* .
+- cp ../target/webapp/.* .
+- git add -f .
+- git config user.email "me@johnathangilday.com"
+- git config user.name "Johnathan Gilday"
+- git commit -am "adding built site files to gh-pages [ci skip]"
+- git push https://${GH_OAUTH_TOKEN}@github.com/gilday/fast-grades HEAD:gh-pages >
+  /dev/null 2>&1
+deploy:
+  provider: heroku
+  app: fast-grades
+  api_key:
+    secure: OqC3uRTosFn1DiOB2Poew2F8gcMsClm3TqEz3H3XifEo0Cz8JrLEGl75Sbfk1bOqUs6LiiJiquIQJNyVmZSRepyBccIlzfofp4khc8m79YO1PU1vybehzI05tE9NvJCOznzqW3wr4wkyuVjieq/Dm8W8tGPiMd3WRqq+hXOGKKs=
