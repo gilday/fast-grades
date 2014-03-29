@@ -31,8 +31,6 @@ after_success:
 - git push https://${GH_OAUTH_TOKEN}@github.com/gilday/fast-grades HEAD:gh-pages >
   /dev/null 2>&1
 - cd ..
-- git reset --hard
-- git clean -df
 deploy:
   provider: heroku
   buildpack: https://github.com/heroku/heroku-buildpack-scala
