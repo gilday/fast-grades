@@ -39,7 +39,7 @@ module.exports = function (grunt) {
                 }
             },
             less: {
-                files: ['<%= config.app %>/styles/main.less'],
+                files: ['<%= config.app %>/styles/main.less', '<%= config.app %>/styles/bootstrap-variables.less'],
                 tasks: ['less']
             },
             gruntfile: {

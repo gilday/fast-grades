@@ -1,5 +1,42 @@
-@blue: blue;
+@import "bootstrap";
 
 body {
-    color: @blue;
+	background-repeat: repeat;
+	background-image: url('../images/linedpaper/linedpaper.png');
+	@media only screen and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
+		// Retina display styles
+		background-image: url('../images/linedpaper/linedpaper_@2x.png');
+	}	
+}
+
+footer {
+	background: #fff;
+	margin-top: 100px;
+	padding: 40px 0;
+
+	.wrapper {
+		.make-row();
+	}
+}
+
+#footer-about, #footer-references, #footer-credits {
+	.make-md-column(4);
+}
+
+ul.references-list {
+	list-style: none;
+}
+
+ul.credits-list {
+	padding: 0;
+	display: inline;
+	list-style: none;
+
+	li {
+		display: inline;
+	}
+
+	li + li:before {
+    	content: ", ";
+    }
 }

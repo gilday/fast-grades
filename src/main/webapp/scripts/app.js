@@ -6,6 +6,6 @@
  */
 var fastgrades = angular.module('fastgrades', []);
 
-fastgrades.controller('FrameworkCtrl', ['$scope', function ($scope) {
-	$scope.frameworks = ['Angular', 'JQuery', 'Bootstrap'];
+fastgrades.controller('TestCtrl', ['$scope', function ($scope) {
+	$scope.greeting = 'it works!';
 }]);
