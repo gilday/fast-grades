@@ -1,1 +1,0 @@
-"use strict";var fastgrades=angular.module("fastgrades",[]);fastgrades.controller("FrameworkCtrl",["$scope",function(a){a.frameworks=["Angular","JQuery","Bootstrap"]}]);

@@ -1,0 +1,1 @@
+"use strict";var fastgrades=angular.module("fastgrades",[]);fastgrades.controller("TestCtrl",["$scope",function(a){a.greeting="it works!"}]);
