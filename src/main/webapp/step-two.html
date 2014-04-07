@@ -1,0 +1,43 @@
+<div id="step-two" class="step">
+    <div class="step-heading">
+        <h1>Step Two</h2>
+        <p>Enter the answer key for the exam</p>
+    </div>
+    <div class="step-body">
+        <form ng-submit="setAnswerKey()">
+            <div class="answer-entry" ng-repeat="answer in answerKey">
+                <div class="answer-header">
+                    <p>Question {{ $index + 1 }}</p>
+                </div>
+                <div class="answer-form">
+                    <div class="radio-inline">
+                        <label>
+                            <input type="radio" ng-model="answer.value" name="answer[{{$index}}]" value="A" required>
+                            A
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                            <input type="radio" ng-model="answer.value" name="answer[{{$index}}]" value="B" required>
+                            B
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                            <input type="radio" ng-model="answer.value" name="answer[{{$index}}]" value="C" required>
+                            C
+                        </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                            <input type="radio" ng-model="answer.value" name="answer[{{$index}}]" value="D" required>
+                            D
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-default" value="Finished">
+            </div>
+    </div>
+</div>

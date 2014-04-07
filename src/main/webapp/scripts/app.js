@@ -4,31 +4,65 @@
 /**
  * Define main module
  */
-var fastgrades = angular.module('fastgrades', []);
+var fastgrades = angular.module('fastgrades', ['ngRoute']);
 
-fastgrades.controller('TestCtrl', ['$scope', function ($scope) {
-	$scope.greeting = 'it works!';
+fastgrades.factory('exam', function () {
+
+    var self = {};
+
+    self.answerKey = null;
+
+    self.initializeExam = function (numQuestions) {
+        console.log('creating ' + numQuestions + ' questions');
+        self.answerKey = new Array(numQuestions);
+        for (var i = 0; i < self.answerKey.length; i++) {
+            self.answerKey[i] = { value: null };
+        }
+    };
+
+    return self;
+});
+
+fastgrades.controller('IntroCtrl', function () {
+
+});
+
+fastgrades.controller('StepOneCtrl', ['$scope', '$location', 'exam', function ($scope, $location, exam) {
+
+    $scope.callInitializeExam = function (numQuestions) {
+        exam.initializeExam(numQuestions);
+        transitionToStepTwo();
+    }
+
+    function transitionToStepTwo () {
+        $location.url('step-two');
+    }
 }]);
 
-fastgrades.controller('ExamCtrl', ['$scope', '$location', '$anchorScroll', function ($scope, $location, $anchorScroll) {
+fastgrades.controller('StepTwoCtrl', ['$scope', 'exam', function ($scope, exam) {
 
-    $scope.answerKey = null;
-
-    $scope.isStepOneComplete = function() {
-        return $scope.answerKey !== null;
-    };
-
-    $scope.createAnswerKey = function (numQuestions) {
-        console.log('creating ' + numQuestions + ' questions');
-        $scope.answerKey = new Array(numQuestions);
-        for (var i = 0; i < $scope.answerKey.length; i++) {
-            $scope.answerKey[i] = { value: null };
-        }
-        scrollToStepTwo();
-    };
-
-    function scrollToStepTwo () {
-        $location.hash('step-two');
-        $anchorScroll();
+    if (!exam.answerKey) {
+        throw 'Exam\'s answer key must be initialized by step two';
     }
+
+    $scope.answerKey = exam.answerKey;
+
+}]);
+
+fastgrades.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+    $routeProvider
+        .when('/', {
+            templateUrl: 'intro.html',
+            controller: 'IntroCtrl'
+        })
+        .when('/step-one', {
+            templateUrl: 'step-one.html',
+            controller: 'StepOneCtrl'
+        })
+        .when('/step-two', {
+            templateUrl: 'step-two.html',
+            controller: 'StepTwoCtrl'
+        });
+
+    $locationProvider.html5Mode(true);
 }]);
