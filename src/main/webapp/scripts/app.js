@@ -69,19 +69,19 @@ fastgrades.controller('StepThreeCtrl', ['$scope', function ($scope) {
 fastgrades.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'intro.html',
+            templateUrl: 'views/intro.html',
             controller: 'IntroCtrl'
         })
         .when('/step-one', {
-            templateUrl: 'step-one.html',
+            templateUrl: 'views/step-one.html',
             controller: 'StepOneCtrl'
         })
         .when('/step-two', {
-            templateUrl: 'step-two.html',
+            templateUrl: 'views/step-two.html',
             controller: 'StepTwoCtrl'
         })
         .when('/step-three', {
-            templateUrl: 'step-three.html',
+            templateUrl: 'views/step-three.html',
             controller: 'StepThreeCtrl'
         })
         .otherwise({
