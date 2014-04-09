@@ -4,7 +4,7 @@
         <p>Enter the answer key for the exam</p>
     </div>
     <div class="step-body">
-        <form ng-submit="setAnswerKey()">
+        <form ng-submit="callSaveAnswerKey()">
             <div class="answer-entry" ng-repeat="answer in answerKey">
                 <div class="answer-header">
                     <p>Question {{ $index + 1 }}</p>
