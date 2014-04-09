@@ -37,7 +37,7 @@ fastgrades.controller('StepOneCtrl', ['$scope', '$location', 'exam', function ($
     $scope.callInitializeExam = function (numQuestions) {
         exam.initializeExam(numQuestions);
         transitionToStepTwo();
-    }
+    };
 
     function transitionToStepTwo () {
         $location.url('step-two');
@@ -52,9 +52,9 @@ fastgrades.controller('StepTwoCtrl', ['$scope', '$location', 'exam', function ($
 
     $scope.answerKey = exam.answerKey;
     $scope.callSaveAnswerKey = function () {
-        exam.saveAnswerKey;
+        exam.saveAnswerKey();
         transitionToStepThree();
-    }
+    };
 
     function transitionToStepThree () {
         $location.url('step-three');
@@ -83,7 +83,9 @@ fastgrades.config(['$routeProvider', '$locationProvider', function ($routeProvid
         .when('/step-three', {
             templateUrl: 'step-three.html',
             controller: 'StepThreeCtrl'
+        })
+        .otherwise({
+            redirectTo: '/'
         });
-
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(false);
 }]);
