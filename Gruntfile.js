@@ -39,7 +39,7 @@ module.exports = function (grunt) {
                 }
             },
             less: {
-                files: ['<%= config.app %>/styles/main.less', '<%= config.app %>/styles/bootstrap-variables.less'],
+                files: ['<%= config.app %>/styles/main.less', '<%= config.app %>/styles/bootstrap-variables.less', '<%= config.app %>/styles/print-exam.less'],
                 tasks: ['less']
             },
             gruntfile: {
@@ -122,7 +122,7 @@ module.exports = function (grunt) {
             files: [{
               expand: true, // Enable dynamic expansion
               cwd: '<%= config.app %>/styles/', // Src matches are relative to this path
-              src: ['main.less'],
+              src: ['main.less', 'print-exam.less'],
               dest: '.tmp/styles', // Destination path prefix
               ext: '.css' // Dest filepaths will have this extension
             }]
@@ -131,7 +131,7 @@ module.exports = function (grunt) {
             files: [{
               expand: true,
               cwd: '<%= config.app %>/styles/',
-              src: ['main.less'],
+              src: ['main.less', 'print-exam.less'],
               dest: '.tmp/styles/',
               ext: '.css'
             }]

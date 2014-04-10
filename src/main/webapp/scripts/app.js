@@ -8,24 +8,36 @@ var fastgrades = angular.module('fastgrades', ['ngRoute']);
 
 fastgrades.factory('exam', function () {
 
-    var self = {};
+    var isAnswerKeySaved = false,
+        answerKey = null,
+        title = null;
 
-    self.isAnswerKeySaved = false;
-    self.answerKey = null;
-
-    self.initializeExam = function (numQuestions) {
-        console.log('creating ' + numQuestions + ' questions');
-        self.answerKey = new Array(numQuestions);
-        for (var i = 0; i < self.answerKey.length; i++) {
-            self.answerKey[i] = { value: null };
+    return {
+        answerKey: function(value) {
+            if (value) {
+                answerKey = value;
+            } else {
+                return answerKey;
+            }
+        },
+        title: function(value) {
+            if (value) {
+                title = value;
+            } else {
+                return title;
+            }
+        },
+        initializeExam: function (numQuestions) {
+            console.log('creating ' + numQuestions + ' questions');
+            answerKey = new Array(numQuestions);
+            for (var i = 0; i < answerKey.length; i++) {
+                answerKey[i] = { value: null };
+            }
+        },
+        saveAnswerKey: function () {
+            isAnswerKeySaved = true;
         }
     };
-
-    self.saveAnswerKey = function () {
-        self.isAnswerKeySaved = true;
-    };
-
-    return self;
 });
 
 fastgrades.controller('IntroCtrl', function () {
@@ -34,8 +46,9 @@ fastgrades.controller('IntroCtrl', function () {
 
 fastgrades.controller('StepOneCtrl', ['$scope', '$location', 'exam', function ($scope, $location, exam) {
 
-    $scope.callInitializeExam = function (numQuestions) {
-        exam.initializeExam(numQuestions);
+    $scope.callInitializeExam = function () {
+        exam.initializeExam($scope.numQuestions);
+        exam.title($scope.title);
         transitionToStepTwo();
     };
 
@@ -46,11 +59,11 @@ fastgrades.controller('StepOneCtrl', ['$scope', '$location', 'exam', function ($
 
 fastgrades.controller('StepTwoCtrl', ['$scope', '$location', 'exam', function ($scope, $location, exam) {
 
-    if (!exam.answerKey) {
+    if (!exam.answerKey()) {
         throw 'Exam\'s answer key must be initialized by step two';
     }
 
-    $scope.answerKey = exam.answerKey;
+    $scope.answerKey = exam.answerKey();
     $scope.callSaveAnswerKey = function () {
         exam.saveAnswerKey();
         transitionToStepThree();
@@ -61,9 +74,29 @@ fastgrades.controller('StepTwoCtrl', ['$scope', '$location', 'exam', function ($
     }
 }]);
 
-fastgrades.controller('StepThreeCtrl', ['$scope', function ($scope) {
+fastgrades.controller('StepThreeCtrl', ['$scope', 'exam', function ($scope, exam) {
+    $scope.examUrl = 'print-exam.html?title=' + exam.title() + '&numQuestions=' + exam.answerKey().length;
+}]);
 
+fastgrades.controller('PrintExamCtrl', ['$scope', function ($scope) {
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    var numQuestions = parseInt(getParameterByName('numQuestions'), 10);
+    var title = getParameterByName('title');
 
+    if (!numQuestions) {
+        throw 'Query parameter numQuestions is required';
+    }
+    if (!title) {
+        throw 'Query parameter title is required';
+    }
+
+    $scope.questions = new Array(numQuestions);
+    $scope.title = title;
 }]);
 
 fastgrades.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {

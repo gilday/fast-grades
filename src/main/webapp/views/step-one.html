@@ -4,7 +4,11 @@
         <p>How many multiple choice questions are on this exam?
     </div>
     <div class="step-body">
-        <form ng-submit="callInitializeExam(numQuestions)">
+        <form ng-submit="callInitializeExam()">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" name="title" ng-model="title">
+            </div>
             <div class="form-group">
                 <label for="num-questions">Number of Questions</label>
                 <input type="number" class="form-control" name="num-questions" ng-model="numQuestions">
