@@ -8,55 +8,57 @@
         <title>Fast Grades - Print Exam</title>
         <meta name="viewport" content="width=device-width">
         <!-- build:css(.tmp) styles/main.css -->
-        <link rel="stylesheet" href="styles/print-exam.css">
+        <link rel="stylesheet" href="styles/print-exam.css" type="text/css">
         <!-- endbuild -->
     </head>
     <body ng-controller="PrintExamCtrl">
-        <header>
-            <div id="exam-metadata">
-                <div class="metadata-field">
-                    <div class="metadata-field-label">
-                        Name:
+        <div class="container">
+            <header>
+                <div id="exam-metadata">
+                    <div class="metadata-field">
+                        <div class="metadata-field-label">
+                            Name:
+                        </div>
+                        <div class="metadata-field-input">
+                        </div>
                     </div>
-                    <div class="metadata-field-input">
+                    <div class="metadata-field">
+                        <div class="metadata-field-label">
+                            Date:
+                        </div>
+                        <div class="metadata-field-input">
+                        </div>
+                    </div>
+                    <div class="metadata-field">
+                        <div class="metadata-field-label">
+                            Period:
+                        </div>
+                        <div class="metadata-field-input">
+                        </div>
                     </div>
                 </div>
-                <div class="metadata-field">
-                    <div class="metadata-field-label">
-                        Date:
+                <div id="exam-title">
+                    <h1>{{ title }}</h1>
+                </div>
+            </header>
+            <main>
+                <div id="questions">
+                    <div ng-repeat="question in questions track by $index" class="question">
+                        <div class="question-number">
+                            {{ $index + 1 }}.
+                        </div>
+                        <div class="question-bubbles">
+                            <svg>
+                                <circle cx="12" cy="12" r="10" />
+                                <circle cx="62" cy="12" r="10" />
+                                <circle cx="112" cy="12" r="10" />
+                                <circle cx="162" cy="12" r="10" />
+                            </svg>
+                        </div>
                     </div>
-                    <div class="metadata-field-input">
-                    </div>
                 </div>
-                <div class="metadata-field">
-                    <div class="metadata-field-label">
-                        Period:
-                    </div>
-                    <div class="metadata-field-input">
-                    </div>
-                </div>
-            </div>
-            <div id="exam-title">
-                <h1>{{ title }}</h1>
-            </div>
-        </header>
-        <main>
-            <div ng-repeat="question in questions track by $index">
-                <div class="question-number">{{ $index + 1 }}</div>
-                <div class="question-bubble">
-                    A
-                </div>
-                <div class="question-bubble">
-                    B
-                </div>
-                <div class="question-bubble">
-                    C
-                </div>
-                <div class="question-bubble">
-                    D
-                </div>
-            </div>
-        </main>
+            </main>
+        </div>
         <!-- build:js scripts/vendor.js -->
         <script src="bower_components/angular/angular.js"></script>
         <script src="bower_components/angular-route/angular-route.js"></script>

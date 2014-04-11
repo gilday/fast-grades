@@ -1,3 +1,66 @@
+@import "../bower_components/bootstrap/less/variables.less";
+@import "../bower_components/bootstrap/less/mixins.less";
+@import "../bower_components/bootstrap/less/normalize.less";
+
 body {
+    background-color: #fff;
     color: 000;
+}
+
+#questions {
+    margin-top: 40px;
+    padding: 20px;
+}
+
+.container {
+    width: 760px;
+    margin: 0px auto;
+}
+
+#exam-metadata {
+
+    .metadata-field {
+        margin: 15px 0;
+    }
+
+    .metadata-field-label {
+        width: 150px;
+        font-weight: 700;
+    }
+
+    .metadata-field-input {
+        width: 320px;
+        border-bottom: 1px solid #000;
+    }
+}
+
+#exam-title {
+    width: 100%;
+    text-align: center;
+}
+
+
+.question {
+    .make-row();
+    height: 24px;
+    padding: 10px 0;
+}
+
+.question-number {
+    .make-xs-column(1);
+    font-size: 18px;
+}
+
+.question-bubbles {
+    .make-xs-column(10);
+    svg {
+        height: 24px;
+        width: 200px;
+
+        circle {
+            stroke-width: 2px;
+            stroke: black;
+            fill: white;
+        }
+    }
 }
