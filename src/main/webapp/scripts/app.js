@@ -78,6 +78,10 @@ fastgrades.controller('StepThreeCtrl', ['$scope', 'exam', function ($scope, exam
     $scope.examUrl = 'print-exam.html?title=' + exam.title() + '&numQuestions=' + exam.answerKey().length;
 }]);
 
+fastgrades.controller('StepFourCtrl', ['$scope', 'exam', function ($scope, exam) {
+
+}]);
+
 fastgrades.controller('PrintExamCtrl', ['$scope', function ($scope) {
     function getParameterByName(name) {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -116,6 +120,10 @@ fastgrades.config(['$routeProvider', '$locationProvider', function ($routeProvid
         .when('/step-three', {
             templateUrl: 'views/step-three.html',
             controller: 'StepThreeCtrl'
+        })
+        .when('/step-four', {
+            templateUrl: 'views/step-four.html',
+            controller: 'StepFourCtrl'
         })
         .otherwise({
             redirectTo: '/'
