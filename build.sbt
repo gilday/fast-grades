@@ -18,11 +18,9 @@ libraryDependencies ++= Seq(
   "ch.qos.logback" % "logback-classic" % "1.1.1",
   "org.scalatest" %% "scalatest" % "2.0" % "test",
   "com.typesafe" %% "scalalogging-slf4j" % "1.0.1",
-  "io.spray" % "spray-routing" % "1.3.1",
-  "io.spray" % "spray-can" % "1.3.1",
-  "io.spray" % "spray-httpx" % "1.3.1",
-  "org.json4s" %% "json4s-native" % "3.2.8",
-  "com.typesafe.akka" %% "akka-actor" % "2.3.0"
+  "org.scalatra" %% "scalatra" % "2.2.2",
+  "org.eclipse.jetty" % "jetty-webapp" % "8.1.8.v20121106",
+  "org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016" % "provided"
 )
 
 seq(SbtStartScript.startScriptForClassesSettings: _*)

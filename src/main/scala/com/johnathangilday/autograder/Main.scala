@@ -1,21 +1,25 @@
 package com.johnathangilday.autograder
 
-import akka.actor.{Props, ActorSystem}
-import akka.io.IO
-import spray.can.Http
+import org.eclipse.jetty.server.Server
+import org.eclipse.jetty.servlet.ServletContextHandler
+import org.scalatra.servlet.MultipartConfig
 
 object Main extends App {
 
   val host = "0.0.0.0"
   val port = Option(System.getenv("PORT")).getOrElse("8080").toInt
-  println("binding to port " + port)
 
-  // we need an ActorSystem to host our application in
-  implicit val system = ActorSystem("auto-grader")
+  val server = new Server(port)
+  val context = new ServletContextHandler()
+  val holder = context.addServlet(classOf[FastGradesServlet], "/*")
+  holder.getRegistration.setMultipartConfig(
+    MultipartConfig(
+      maxFileSize = Some(10 * 1024 * 1024), // max upload 10 megs
+      fileSizeThreshold = Some(1 * 1024 * 1024) // write to disk if more than one megabyte
+    ).toMultipartConfigElement
+  )
+  server.setHandler(context)
 
-  // create and start our service actor
-  val service = system.actorOf(Props[HelloHttpActor], "hello-service")
-
-  // start a new HTTP server on port 8080 with our service actor as the handler
-  IO(Http) ! Http.Bind(service, host, port)
+  server.start()
+  server.join()
 }
