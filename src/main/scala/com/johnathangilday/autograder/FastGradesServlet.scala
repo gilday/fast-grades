@@ -5,7 +5,7 @@ import org.scalatra.servlet.{FileItem, FileUploadSupport}
 import java.io.File
 
 class FastGradesServlet extends ScalatraServlet with FileUploadSupport {
-  this: Persistence with Core =>
+  this: Core =>
 
   get("/") {
     "It works!"

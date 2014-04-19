@@ -3,7 +3,6 @@ package com.johnathangilday.autograder
 /**
  * dependencies on core application services
  */
-trait Core {
+trait Core extends ExamFilesComponent with GraderComponent
 
-  val grader: Grader
-}
+trait CoreImpl extends Core with LocalExamFilesComponent with GraderComponentImpl
