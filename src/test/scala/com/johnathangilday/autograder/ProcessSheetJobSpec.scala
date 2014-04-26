@@ -12,15 +12,17 @@ import java.awt.image.BufferedImage
 import java.awt.{Color, BasicStroke}
 import java.io.File
 import org.scalatest.{FlatSpec, Matchers}
+import com.johnathangilday.autograder.SheetProcessorComponentImpl
 
-class ProcessSheetJobSpec extends FlatSpec with Matchers {
+class ProcessSheetJobSpec extends FlatSpec with Matchers with SheetProcessorComponentImpl {
 
   val logger = {
     val logDir = new File("target/test-log")
     Files2.mkdirs(logDir)
     new ImgLogger(logDir)
   }
-  val processor = new SheetProcessor
+
+  val processor = sheetProcessor.asInstanceOf[SheetProcessorImpl]
 
   def markedTestImage(img: BufferedImage) {
 

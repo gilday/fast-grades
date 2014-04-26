@@ -5,4 +5,4 @@ package com.johnathangilday.autograder
  */
 trait Core extends ExamFilesComponent with GraderComponent
 
-trait CoreImpl extends Core with LocalExamFilesComponent with GraderComponentImpl
+trait CoreImpl extends Core with LocalExamFilesComponent with GraderComponentImpl with SheetProcessorComponentImpl

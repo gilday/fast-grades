@@ -2,6 +2,8 @@ package com.johnathangilday.autograder
 
 import java.io.File
 import scala.annotation.tailrec
+import com.google.common.io.Files
+import com.johnathangilday.autograder.utils.Files2
 
 trait ExamFilesComponent {
 
@@ -28,9 +30,15 @@ trait LocalExamFilesComponent extends ExamFilesComponent {
         val file = new File(base, i.toString)
         if (file.exists) nextTmp(i + 1) else file
       }
-      nextTmp(0)
+      val file = nextTmp(0)
+      Files.touch(file)
+      file
     }
 
-    override val base: File = new File("files")
+    override val base: File = {
+      val base = new File("files")
+      Files2.mkdirs(base)
+      base
+    }
   }
 }

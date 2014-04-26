@@ -4,7 +4,7 @@ import boofcv.alg.filter.binary.Contour
 
 object Row {
   /**
-   * Number of choices is hard-coded at 4 right now: A, B, C, D TODO work with Product Owner to define this number
+   * Number of choices is hard-coded at 4 right now: A, B, C, D
    */
   val numChoices = 4
 }
