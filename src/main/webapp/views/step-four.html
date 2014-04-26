@@ -8,10 +8,10 @@
         </div>
     </div>
     <div class="step-body">
-        <form>
+        <form ng-submit="onSubmit()">
             <div class="form-group">
                 <label for="exam-file">Exam</label>
-                <input type="file" class="form-control" name="exam-file">
+                <input type="file" class="form-control" name="exam-file" ng-file-select="onFileSelect($files)" required>
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-default">
