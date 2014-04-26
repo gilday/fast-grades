@@ -4,23 +4,24 @@
 /**
  * Define main module
  */
-var fastgrades = angular.module('fastgrades', ['ngRoute']);
+var fastgrades = angular.module('fastgrades', ['ngRoute', 'angularFileUpload']);
 
 fastgrades.factory('exam', function () {
 
     var isAnswerKeySaved = false,
         answerKey = null,
-        title = null;
+        title = null,
+        studentMarks = null;
 
     return {
-        answerKey: function(value) {
+        answerKey: function (value) {
             if (value) {
                 answerKey = value;
             } else {
                 return answerKey;
             }
         },
-        title: function(value) {
+        title: function (value) {
             if (value) {
                 title = value;
             } else {
@@ -28,7 +29,6 @@ fastgrades.factory('exam', function () {
             }
         },
         initializeExam: function (numQuestions) {
-            console.log('creating ' + numQuestions + ' questions');
             answerKey = new Array(numQuestions);
             for (var i = 0; i < answerKey.length; i++) {
                 answerKey[i] = { value: null };
@@ -36,6 +36,13 @@ fastgrades.factory('exam', function () {
         },
         saveAnswerKey: function () {
             isAnswerKeySaved = true;
+        },
+        studentMarks: function (value) {
+            if (value) {
+                studentMarks = value;
+            } else {
+                return studentMarks;
+            }
         }
     };
 });
@@ -78,8 +85,42 @@ fastgrades.controller('StepThreeCtrl', ['$scope', 'exam', function ($scope, exam
     $scope.examUrl = 'print-exam.html?title=' + exam.title() + '&numQuestions=' + exam.answerKey().length;
 }]);
 
-fastgrades.controller('StepFourCtrl', ['$scope', 'exam', function ($scope, exam) {
+fastgrades.controller('StepFourCtrl', ['$scope', '$location', '$upload', 'exam', function ($scope, $location, $upload, exam) {
 
+    $scope.file = null;
+
+    $scope.onFileSelect = function (files) {
+        if (files.length <= 0) throw 'Files must not be empty list';
+        $scope.file = files[0];
+    };
+
+    $scope.onSubmit = function () {
+        if (!$scope.file) throw 'File was never set';
+        $scope.upload = $upload.upload({
+            url: 'http://localhost:8080/files', // TODO externalize
+            method: 'POST',
+            // withCredentials: true,
+            // data: {myObj: $scope.myModelObj},
+            file: $scope.file, // or list of files: $files for html5 only
+            /* set the file formData name ('Content-Desposition'). Default is 'file' */
+            fileFormDataName: 'exam', //or a list of names for multiple files (html5).
+            /* customize how data is added to formData. See #40#issuecomment-28612000 for sample code */
+            //formDataAppender: function(formData, key, val){}
+            })
+        .progress(function(evt) {
+            console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+        }).success(function(data, status, headers, config) {
+            // file is uploaded successfully
+            exam.studentMarks(data);
+            $location.url('grade-report');
+        });
+    };
+
+}]);
+
+fastgrades.controller('GradeReportCtrl', ['$scope', 'exam', function ($scope, exam) {
+
+        // TODO compute grades and store result in scope for display
 }]);
 
 fastgrades.controller('PrintExamCtrl', ['$scope', function ($scope) {
@@ -124,6 +165,10 @@ fastgrades.config(['$routeProvider', '$locationProvider', function ($routeProvid
         .when('/step-four', {
             templateUrl: 'views/step-four.html',
             controller: 'StepFourCtrl'
+        })
+        .when('/grade-report', {
+            templateUrl: 'views/grade-report.html',
+            controller: 'GradeReportCtrl'
         })
         .otherwise({
             redirectTo: '/'
