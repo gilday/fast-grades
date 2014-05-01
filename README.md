@@ -1,6 +1,6 @@
 # Auto Grader
 
-![TravisCI status](https://travis-ci.org/gilday/fast-grades.png?branch=master)
+[![Build status](https://travis-ci.org/gilday/fast-grades.png?branch=master)](https://travis-ci.org/gilday/fast-grades)
 
 [Production Instance](http://gilday.github.io/fast-grades)
 
