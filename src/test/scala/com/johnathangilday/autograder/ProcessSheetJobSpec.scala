@@ -12,7 +12,6 @@ import java.awt.image.BufferedImage
 import java.awt.{Color, BasicStroke}
 import java.io.File
 import org.scalatest.{FlatSpec, Matchers}
-import com.johnathangilday.autograder.SheetProcessorComponentImpl
 
 class ProcessSheetJobSpec extends FlatSpec with Matchers with SheetProcessorComponentImpl {
 
