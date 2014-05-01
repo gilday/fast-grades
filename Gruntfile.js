@@ -61,6 +61,23 @@ module.exports = function (grunt) {
             }
         },
 
+        ngconstant: {
+            options: {
+                name: 'config',
+                dest: '.tmp/scripts/config.js'
+            },
+            server: {
+                constants: {
+                    api: 'http://localhost:8080'
+                }
+            },
+            dist: {
+                constants: {
+                    api: 'https://fast-grades.herokuapp.com'
+                }
+            }
+        },
+
         // The actual grunt server settings
         connect: {
             options: {
@@ -301,6 +318,7 @@ module.exports = function (grunt) {
         grunt.task.run([
             'clean:server',
             'less:server',
+            'ngconstant:server',
             'concurrent:server',
             'connect:livereload',
             'watch'
@@ -315,6 +333,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'clean:dist',
         'less:dist',
+        'ngconstant:dist',
         'useminPrepare',
         'concurrent:dist',
         'concat',
