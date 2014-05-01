@@ -4,7 +4,7 @@
 /**
  * Define main module
  */
-var fastgrades = angular.module('fastgrades', ['ngRoute', 'angularFileUpload']);
+var fastgrades = angular.module('fastgrades', ['ngRoute', 'angularFileUpload', 'config']);
 
 fastgrades.factory('exam', function () {
 
@@ -85,7 +85,7 @@ fastgrades.controller('StepThreeCtrl', ['$scope', 'exam', function ($scope, exam
     $scope.examUrl = 'print-exam.html?title=' + exam.title() + '&numQuestions=' + exam.answerKey().length;
 }]);
 
-fastgrades.controller('StepFourCtrl', ['$scope', '$location', '$upload', 'exam', function ($scope, $location, $upload, exam) {
+fastgrades.controller('StepFourCtrl', ['$scope', '$location', '$upload', 'exam', 'api', function ($scope, $location, $upload, exam, api) {
 
     $scope.file = null;
 
@@ -97,7 +97,7 @@ fastgrades.controller('StepFourCtrl', ['$scope', '$location', '$upload', 'exam',
     $scope.onSubmit = function () {
         if (!$scope.file) throw 'File was never set';
         $scope.upload = $upload.upload({
-            url: 'http://localhost:8080/files', // TODO externalize
+            url: api + '/files',
             method: 'POST',
             // withCredentials: true,
             // data: {myObj: $scope.myModelObj},
@@ -120,7 +120,36 @@ fastgrades.controller('StepFourCtrl', ['$scope', '$location', '$upload', 'exam',
 
 fastgrades.controller('GradeReportCtrl', ['$scope', 'exam', function ($scope, exam) {
 
-        // TODO compute grades and store result in scope for display
+    function booleanArrayLetterMark(bools) {
+        if (bools[0]) return 'A';
+        if (bools[1]) return 'B';
+        if (bools[2]) return 'C';
+        if (bools[3]) return 'D';
+        return null;
+    }
+
+    $scope.report = {
+        title: exam.title(),
+        problems: []
+    };
+    for (var i = 0; i < exam.answerKey().length; i++) {
+        var problem = {
+            answer: exam.answerKey()[i].value,
+            mark: booleanArrayLetterMark(exam.studentMarks()[i])
+        };
+        problem.isCorrect = function() {
+            return problem.answer === problem.mark;
+        };
+        $scope.report.problems[i] = problem;
+    }
+    var correct = 0;
+    for (var i = 0; i < $scope.report.problems.length; i++) {
+        var problem = $scope.report.problems[i];
+        if (problem.answer === problem.mark) {
+            correct++;
+        }
+    }
+    $scope.report.score = (correct / $scope.report.problems.length) * 100;
 }]);
 
 fastgrades.controller('PrintExamCtrl', ['$scope', function ($scope) {

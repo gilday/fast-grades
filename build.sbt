@@ -25,6 +25,8 @@ libraryDependencies ++= Seq(
   "org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016" % "provided"
 )
 
+mainClass := Some("com.johnathangilday.autograder.Main")
+
 seq(SbtStartScript.startScriptForClassesSettings: _*)
 
 TaskKey[Unit]("grunt", "Kicks off a Grunt.js build and stores the built front-end in target/webapp") <<= streams map { (s: TaskStreams) =>
