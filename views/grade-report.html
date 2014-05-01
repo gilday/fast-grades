@@ -1,0 +1,1 @@
+<div id=grade-report class=step><div class=step-heading><h1>Grade Report</h1></div><div class=step-body><div><h2>{{ report.title }}</h2><div id=score>Score {{ report.score | number:1 }} %</div><div id=problems><ol><li ng-repeat="problem in report.problems"><div class=response>{{ problem.mark }}</div><div class=answer>{{ problem.answer }}</div></li></ol></div></div></div></div>
