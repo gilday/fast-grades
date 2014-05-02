@@ -71,3 +71,50 @@ ul.credits-list {
 .instructions h2 {
 	font-size: @font-size-h4;
 }
+
+#grade-report {
+
+	#score {
+		font-size: @font-size-h3;
+	}
+	#problems {
+
+		.make-md-column(3);
+
+		ol {
+			font-size: @font-size-base * 1.4;
+
+			li {
+				padding: 4px 0;
+			}
+
+			.problem {
+				padding: 4px;
+				border-radius: 2px;
+
+				.answer, .response {
+					display: inline;
+				}
+				.answer {
+					padding-left: 8px;
+				}
+			}
+
+			.correct.problem {
+				background-color: @alert-success-bg;
+				color: @alert-success-text;
+			}
+			.correct .answer {
+				.hidden();
+			}
+			.incorrect.problem {
+				background-color: @alert-danger-bg;
+				color: @alert-danger-text;
+			}
+			.incorrect .response {
+				text-decoration: line-through;
+			}
+		}
+	}
+
+}

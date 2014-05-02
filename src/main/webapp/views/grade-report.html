@@ -11,8 +11,10 @@
             <div id="problems">
                 <ol>
                     <li ng-repeat="problem in report.problems">
-                        <div class="answer">{{ problem.answer }}</div>
-                        <div class="response">{{ problem.mark }}</div>
+                        <div ng-class="{ correct: problem.isCorrect(), incorrect: !problem.isCorrect() }" class="problem">
+                            <div class="response">{{ problem.mark }}</div>
+                            <div class="answer">Answer: {{ problem.answer }}</div>
+                        </div>
                     </li>
                 </ol>
             </div>

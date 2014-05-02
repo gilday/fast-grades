@@ -137,15 +137,18 @@ fastgrades.controller('GradeReportCtrl', ['$scope', 'exam', function ($scope, ex
             answer: exam.answerKey()[i].value,
             mark: booleanArrayLetterMark(exam.studentMarks()[i])
         };
-        problem.isCorrect = function() {
-            return problem.answer === problem.mark;
-        };
+        problem.isCorrect = (function(self) {
+            return function() {
+                console.log('is correct? ' + self.answer + ' === ' + self.mark);
+                return self.answer === self.mark;
+            };
+        })(problem);
         $scope.report.problems[i] = problem;
     }
     var correct = 0;
     for (var i = 0; i < $scope.report.problems.length; i++) {
         var problem = $scope.report.problems[i];
-        if (problem.answer === problem.mark) {
+        if (problem.isCorrect()) {
             correct++;
         }
     }
