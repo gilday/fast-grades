@@ -1,4 +1,4 @@
-package com.johnathangilday.autograder
+package com.johnathangilday.autograder.cv
 
 import java.io.File
 

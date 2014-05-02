@@ -1,5 +1,7 @@
 package com.johnathangilday.autograder
 
+import com.johnathangilday.autograder.cv.{GraderComponentImpl, GraderComponent, SheetProcessorComponentImpl}
+
 /**
  * dependencies on core application services
  */

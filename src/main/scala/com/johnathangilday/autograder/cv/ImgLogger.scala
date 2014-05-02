@@ -1,4 +1,4 @@
-package com.johnathangilday.autograder
+package com.johnathangilday.autograder.cv
 
 import boofcv.core.image.ConvertBufferedImage
 import boofcv.gui.binary.VisualizeBinaryData

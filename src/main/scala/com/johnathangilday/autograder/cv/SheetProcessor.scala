@@ -1,4 +1,4 @@
-package com.johnathangilday.autograder
+package com.johnathangilday.autograder.cv
 
 import boofcv.alg.feature.shapes.ShapeFittingOps
 import boofcv.alg.filter.binary.{Contour, BinaryImageOps, ThresholdImageOps}

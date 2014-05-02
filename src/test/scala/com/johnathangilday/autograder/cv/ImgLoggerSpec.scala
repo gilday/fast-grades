@@ -1,4 +1,4 @@
-package com.johnathangilday.autograder
+package com.johnathangilday.autograder.cv
 
 import org.scalatest.{Matchers, FunSpec}
 import com.johnathangilday.autograder.testutils.TestImgFactory
@@ -18,7 +18,7 @@ class ImgLoggerSpec extends FunSpec with Matchers {
   describe("ImgLogger debugging aid") {
 
     it("logs images as files to the log directory") {
-      val img = TestImgFactory.markedTestSample
+      val img = TestImgFactory.markedBufImg
       val beforeCount = countFiles(dir)
 
       logger.debug(img, "imglogger-spec")
