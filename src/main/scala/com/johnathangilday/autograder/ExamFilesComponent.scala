@@ -16,6 +16,7 @@ trait ExamFilesComponent {
 }
 
 trait LocalExamFilesComponent extends ExamFilesComponent {
+  self: SettingsComponent =>
 
   override val files: ExamFiles = new LocalExamFiles
 
@@ -36,7 +37,7 @@ trait LocalExamFilesComponent extends ExamFilesComponent {
     }
 
     override val base: File = {
-      val base = new File("files")
+      val base = new File(settings.getString("grades.tmp"))
       Files2.mkdirs(base)
       base
     }

@@ -7,4 +7,4 @@ import com.johnathangilday.autograder.cv.{CropperComponentImpl, GraderComponentI
  */
 trait Core extends ExamFilesComponent with GraderComponent
 
-trait CoreImpl extends Core with LocalExamFilesComponent with GraderComponentImpl with SheetProcessorComponentImpl with CropperComponentImpl
+trait CoreImpl extends Core with LocalExamFilesComponent with GraderComponentImpl with SheetProcessorComponentImpl with CropperComponentImpl with SettingsComponentImpl

@@ -18,6 +18,7 @@ libraryDependencies ++= Seq(
   "ch.qos.logback" % "logback-classic" % "1.1.1",
   "org.scalatest" %% "scalatest" % "2.0" % "test",
   "com.typesafe" %% "scalalogging-slf4j" % "1.0.1",
+  "com.typesafe" % "config" % "1.2.1",
   "org.scalatra" %% "scalatra" % "2.2.2",
   "org.scalatra" %% "scalatra-json" % "2.2.2",
   "org.json4s"   %% "json4s-jackson" % "3.2.6",
