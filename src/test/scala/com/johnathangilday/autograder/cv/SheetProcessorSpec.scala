@@ -13,7 +13,7 @@ import java.awt.{Color, BasicStroke}
 import java.io.File
 import org.scalatest.{FlatSpec, Matchers}
 
-class ProcessSheetJobSpec extends FlatSpec with Matchers with SheetProcessorComponentImpl {
+class SheetProcessorSpec extends FlatSpec with Matchers with SheetProcessorComponentImpl {
 
   val logger = {
     val logDir = new File("target/test-log")

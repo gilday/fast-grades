@@ -4,21 +4,19 @@ import boofcv.alg.feature.shapes.ShapeFittingOps
 import boofcv.alg.filter.binary.{Contour, BinaryImageOps, ThresholdImageOps}
 import boofcv.alg.misc.ImageStatistics
 import boofcv.core.image.ConvertBufferedImage
-import boofcv.io.image.UtilImageIO
 import boofcv.struct.image.ImageUInt8
 import com.johnathangilday.autograder.model.Row
 import com.typesafe.scalalogging.slf4j.Logging
 import georegression.struct.point.Point2D_F64
 import georegression.struct.shapes.EllipseRotated_F64
 import java.awt.image.BufferedImage
-import java.io.File
 import scala.collection.JavaConversions._
 
 trait SheetProcessorComponent {
   val sheetProcessor: SheetProcessor
 
   trait SheetProcessor {
-    def process(file: File): Seq[Seq[Boolean]]
+    def process(img: BufferedImage): Seq[Seq[Boolean]]
   }
 }
 
@@ -36,15 +34,10 @@ trait SheetProcessorComponentImpl extends SheetProcessorComponent {
    */
   class SheetProcessorImpl extends SheetProcessor with Logging {
 
-    def process(file: File): Seq[Seq[Boolean]] = {
-      val bufImg = loadBufferedImage(file)
-      processImage(bufImg)
-    }
-
     /**
      * Do all steps
      */
-    def processImage(bufImg: BufferedImage): Seq[Seq[Boolean]] = {
+    def process(bufImg: BufferedImage): Seq[Seq[Boolean]] = {
       ImgLogger.debug(bufImg, "original")
       val binaryNoNoise = removeNoise(convertToBinary(bufImg))
       val circles = findCircles(binaryNoNoise)
@@ -119,8 +112,6 @@ trait SheetProcessorComponentImpl extends SheetProcessorComponent {
 
       ImageStatistics.sum(subImage) / Math.pow(radius * 2, 2) > 0.5 // More than half the pixels must be marked
     }
-
-    private def loadBufferedImage(file: File): BufferedImage = UtilImageIO.loadImage(file.getAbsolutePath)
   }
 }
 

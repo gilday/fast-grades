@@ -12,11 +12,14 @@ trait GraderComponent {
 }
 
 trait GraderComponentImpl extends GraderComponent {
-  self: SheetProcessorComponent =>
+  self: SheetProcessorComponent with CropperComponent =>
 
   override val grader: Grader = new GraderImpl
 
   class GraderImpl extends Grader {
-    override def grade(file: File): Seq[Seq[Boolean]] = sheetProcessor.process(file)
+    override def grade(file: File): Seq[Seq[Boolean]] = {
+      val cropped = cropper.crop(file)
+      sheetProcessor.process(cropped)
+    }
   }
 }

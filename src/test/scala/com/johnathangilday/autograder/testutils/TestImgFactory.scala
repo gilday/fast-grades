@@ -16,9 +16,10 @@ object TestImgFactory {
 
   def pencilMarkedBufImg: BufferedImage = UtilImageIO.loadImage(getClass.getResource("/pencil-test-sample.jpg"))
 
+  def wholeSheetFile: File = copyUrlToFile(getClass.getResource("/whole-sheet.jpg"), "whole-sheet.jpg")
+
   private def copyUrlToFile(url: URL, name: String): File = {
     val file = new File(tmp, name)
-    val url = getClass.getResource("/marked-test-sample.jpg")
     val fos = new FileOutputStream(file)
     Resources.copy(url, fos)
     fos.close()
