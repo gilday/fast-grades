@@ -33,38 +33,52 @@ I created this simple model prior to the story writing workshop to drive discuss
 
 **Unit Tests** Using [ScalaTest](fhttp://www.scalatest.org/) for unit testing
 
-**TDD** I'm a big fan of test driven development so I will write my tests at the same time (or before) I write new code. To change existing functionality, I will first change the test to verify the new functionality. 
-Currently, the automated testing is done in ScalaTest for the backend code. The front-end JavaScript is not unit tested because I am unfamiliar with the tricky world of JavaScript automated testing and so far the front-end is relatively simple in comparison to the complexity of the backend. 
+**TDD** I will write my tests at the same time (or before) I write new code. To change existing functionality, I will first change the test to verify the new functionality. 
+Currently, the automated testing is done in ScalaTest for the backend code. The front-end JavaScript is not unit tested because I lack experience with the tricky world of JavaScript automated testing and so far the front-end is relatively simple in comparison to the complexity of the backend. 
+
+![Automated Tests](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/sshot-tests.png)
 
 **Continuous Integration** See [Fast Grades on Travis CI](https://travis-ci.org/gilday/fast-grades). With every commit to the `master` branch, a Github post-commit hook tells Travis CI to build the project and run the automated tests.
 
-**Continuous Deployment** The [Travis CI yaml file](https://github.com/gilday/fast-grades/blob/master/.travis.yml) configures Travis CI to push the both the front-end and back-end code to their respective hosting platforms. The front-end web code is hosted on Github pages. The backend scala code is hosted on Heroku at http://fast-grades.herokuapp.com/
+**Continuous Deployment** The [Travis CI yaml file](https://github.com/gilday/fast-grades/blob/master/.travis.yml) configures Travis CI to push the both the front-end and back-end code to their respective hosting platforms. The front-end web code is hosted on Github pages at http://gilday.github.io/fast-grades. The backend scala code is hosted on Heroku at http://fast-grades.herokuapp.com/
+
+![Continuous Integration](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/sshot-travis.png)
 
 ## Definition of Done
 
 In general, I will define the definition of done to be the following. 
 
-All commits should be merged into the master branch. By committing the master branch on GitHub, the continuous integration system will run on all the automated tests.
-Since the master branch automatically deploys the front and back end, I will quickly verify that the production system behaves as expected.
+All commits should be merged into the master branch. Pushing the master branch to GitHub will trigger the continuous integration system to run all the automated tests and deploy the system.
+Since the master branch automatically deploys the front and back end, I will quickly verify that the production system behaves as expected in the production environment.
 
 ## Product Backlog
 
-[The backlog is currently implemented as a Google Spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AteH1qcLQxi-dGxkRHR2YjdQWEMxLWx2WWVLZ05HZlE&usp=sharing). The product owners have the ability to add comments to the spreadsheet. 
+[The product backlog is implemented as a Google Spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0AteH1qcLQxi-dGxkRHR2YjdQWEMxLWx2WWVLZ05HZlE&usp=sharing). The product owners have the ability to add comments to the spreadsheet. 
 The spread sheet is influenced by the template in the class resources. The sheet the following worksheets
 
 1. Release Plan: lists the planned sprints in chronological order with dates
-2. Product Backlog: All tickets prioritized
-3. Sprint Backlogs: one worksheet for each Sprint which lists the planned and completed stories for that sprint.
+2. Product Backlog: All user stories prioritized
+3. Tech Tasks: Infrastructure and Technical Debt tasks which are not user stories but need to be estimated and planned for
+4. Velocity: burndown chart plots the number of story points remaining after each sprint
+5. Sprint Backlogs: one worksheet for each Sprint which lists the planned and completed stories and tasks for that sprint.
 
 Before I implemented the product backlog spreadsheet, I tried to implement the backlog just using Github Milestones and Issues. These Github features were nice because they were well integrated with the Github platform but the Issues and Milestones were not easy to organize in a manner that is consistent with class discussions. 
-Instead, I now keep the product backlog in the aforementioned product backlog spreadsheet but I also input the stories for the current sprint into Github Issues. I group the [Issues](https://github.com/gilday/fast-grades/issues?state=open) into [Milestones](https://github.com/gilday/fast-grades/issues/milestones) (which correspond to each sprint). By keeping the current sprint's stories as Issues in Github, I can associate each code commit with the current issue. These Issues are also more comfortable to work with while coding.
+I corrected course and I now keep the product backlog in the aforementioned spreadsheet. In addition to the spreadsheet, I also input the stories for the current sprint into Github Issues. I group the [Issues](https://github.com/gilday/fast-grades/issues?state=open) into [Milestones](https://github.com/gilday/fast-grades/issues/milestones) (which correspond to each sprint). By keeping the current sprint's stories as Issues in Github, I can associate each code commit and branch with a task. These Issues are also more comfortable to work with while coding; however, this duplicates product backlog data so I would not do this again. Instead, I would prefer to use a system like Jira which is capable for associating code commits with tasks but is more full featured than Github Issues and more tailored to this domain than spreadsheets.
 
 ### Story Writing Workshop
 
 ![Story Writing Workshop](https://raw.github.com/gilday/fast-grades/master/docs/story-workshop.png)
 
-The first tasks for this project were part of the feasability study. After concluding that the project is feasible, I conducted a story writing workshop with the product owners. The stories that came out of the workshop were very large. Many of the stories depend on a core set of stories; the core set is "Optical Grading" theme. 
-The stories in the "Optical Grading" theme are also large and I will focus on this theme first. I will defer estimating stories in other themes until this core theme is finished. 
+The first tasks for this project were part of the feasability study. I have no computer vision experience so I wanted to make sure I could do this project in a semester. After concluding that the project is feasible, I conducted a story writing workshop with the product owners. Four themes emerged from the story writing workshop:
+
+1. Optical Grading
+2. Organize Classes 
+3. Analytics
+4. Student Participation
+
+The stories that came out of the workshop were large and ambitious. I had to manage the product owners' expectations and inform them that I will only have enough capacity to focus on the "Optical Grading" theme. This theme contains the core set of essential features which enable the other themes.
+
+The stories in the "Optical Grading" theme are also large and I will focus on this theme first. I will defer estimating stories and epics in low priority themes until the system is further developed. 
 
 ## References
 
