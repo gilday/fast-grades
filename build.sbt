@@ -2,7 +2,7 @@ import com.typesafe.sbt.SbtStartScript
 import sbt.Keys._
 import sbt.TaskKey
 
-name := "Auto Grader"
+name := "Fast Grades"
 
 description := "Automatic multiple choice grading based on OpenCV"
 

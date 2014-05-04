@@ -27,6 +27,32 @@ I created this simple model prior to the story writing workshop to drive discuss
 
 ![simple model](https://raw.github.com/gilday/fast-grades/master/docs/simple-model-small.jpeg)
 
+## Demonstration
+
+At this stage, the system is a proof of concept which is able to grade an exam. 
+
+First step is to create the exam by providing the name and number of questions
+
+![Step One](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/sshot-step-one.png)
+
+Next, enter the answer key using the form so the system is aware of the correct answers.
+
+![Step Two](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/sshot-step-two.png)
+
+Use the links to print the generated exam sheet for the class
+
+![Step Three](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/sshot-step-three.png)
+![Print Exam](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/sshot-print-exam.png)
+
+After filling out the printed exam, scan the exam as an image and upload it using the form.
+
+![Fill Exam](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/whole-sheet.png)
+![Upload Exam](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/sshot-upload-exam.png)
+
+The system responds to the file upload with a grade report screen.
+
+![Grade Report](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/sshot-grade-report.png)
+
 ## Agile Practices
 
 **Automated Build** Using Scala Build Tool ([sbt](http://www.scala-sbt.org/)) to automatically build project artifacts from source
