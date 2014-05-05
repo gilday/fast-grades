@@ -103,7 +103,10 @@ The spread sheet is influenced by the template in the class resources. The sheet
 5. Sprint Backlogs: one worksheet for each Sprint which lists the planned and completed stories and tasks for that sprint.
 
 Before I implemented the product backlog spreadsheet, I tried to implement the backlog just using Github Milestones and Issues. These Github features were nice because they were well integrated with the Github platform but the Issues and Milestones were not easy to organize in a manner that is consistent with class discussions. 
+
 I corrected course and I now keep the product backlog in the aforementioned spreadsheet. In addition to the spreadsheet, I also input the stories for the current sprint into Github Issues. I group the [Issues](https://github.com/gilday/fast-grades/issues?state=open) into [Milestones](https://github.com/gilday/fast-grades/issues/milestones) (which correspond to each sprint). By keeping the current sprint's stories as Issues in Github, I can associate each code commit and branch with a task. These Issues are also more comfortable to work with while coding; however, this duplicates product backlog data so I would not do this again. Instead, I would prefer to use a system like Jira which is capable for associating code commits with tasks but is more full featured than Github Issues and more tailored to this domain than spreadsheets.
+
+In my product backlog, I separated user stories and techincal tasks (infrastructure and tech debt) in order to track their velocity separately. The burndown chart shows the technical task points stacked on top of the user story points. This system allowed the product owners to see progression on technical tasks vs their stories. 
 
 ### Story Writing Workshop
 
@@ -116,13 +119,47 @@ The first tasks for this project were part of the feasability study. I have no c
 3. Analytics
 4. Student Participation
 
-The stories that came out of the workshop were large and ambitious. I had to manage the product owners' expectations and inform them that I will only have enough capacity to focus on the "Optical Grading" theme. This theme contains the core set of essential features which enable the other themes.
+The stories that came out of the workshop were large and ambitious. After the workshop, I had to manage the product owners' expectations and inform them that I will only have enough capacity to focus on the "Optical Grading" theme. This theme contains the core set of essential features which enable the other themes.
 
 The stories in the "Optical Grading" theme are also large and I will focus on this theme first. I will defer estimating stories and epics in low priority themes until the system is further developed. 
 
-## References
+In addition to the four themes, two user roles emerged from the workshop:
 
-Bookmarks and references
+1. Teachers
+2. Students
+
+The vast majority of the user stories were for the teacher role. This makes sense because this is the system's primary user and both the product owners are teachers. The student role was introduced in the "Student Participation" theme. In this theme, the product owners imagined that students could also have accounts with the system such that they could see their grades for all the classes the belong to. 
+
+### Estimation
+
+As discussed in class, I used relative estimation to arrive at the point values for stories and tasks. Therefore, the points themselves do not correspond to hour in any way; rather, an 8 point story is 4 times as large as a 2 point story. For user stories and tasks, I used a subset of the Fibonacci series: 1, 2, 3, 5, 8, 13 for point values. I chose from this set of values as if it were my hand in planning poker. In retrospect, planning poker might not have been the best estimation technique since I do not have team members to discuss estimations with. Menner's Method is probably better suited for this project. 
+
+For epics, I chose from the set 20, 30, 40, 50, 60, 70, 80, 90, 100. I only estimated one epic because the other epics were a low priority so it was best to defer estimation. 
+
+### Prioritization
+
+At the project's onset, infrastructure tasks, such as hosting the website, build system, test framework, and continuous integration server, took precedence. After these tasks were complete. The next priority were stories from the "Optical Grading" theme which was the focus of my work this semester. Using Kano analysis, the stories in the Optical Grading theme are mandatory features, stories in the Organize Classes theme are linear, and stories in the Analytics and Student Participation themes are exciters. 
+
+## Project Retrospective
+
+My experience on this project has encouraged me to introduce estimation, product backlog prioritization, and continuous deployment to my professional assignment. 
+
+At work, we use Jira to maintain our backlog; however, we do not prioritize the backlog nor do we estimate tasks. Estimating tasks will help us determine the level of effort for new tasks so we can better communicate the level of effort the product owner. Also, the burndown chart in our Jira system is not accurate because it only counts number of tasks and does not account for the size of the tasks.
+
+At work, my team generally discusses a rough prioritization for the next couple of weeks, but I think it is helpful to keep the whole backlog prioritized. This practice removes any "what should we work on next" guessing. Keeping the backlog prioritized also helps with adding new tasks. It's easy to start working on new tasks right away because they are fresh but being fresh does not always translate to highest value. 
+
+My system at work is arduous to deploy right now so I am especially interested in continuous deployment. I spent a lot of time setting up continuous deployment for Fast Grades so I could experience development with a system like this in place. I was impressed with the tools available for this space and I liked the Github + Travis-CI + Heroku setup. Having this system in place allowed me to keep the system always working in production instead of finding out in the last week that there was a problem with deployment. The continuous delivery system also allowed the product owners to stay up to date with my progress not only at the end of a sprint but every time I finished a task. 
+
+
+In hindsight, I would do some things differently if I did this project again. 
+
+I would have held a second story writing workshop after I managed the product owners' expectations. I didn't want to manage their expectations during the workshop because I wanted their ideas to flow freely. Afterwards, I should have held another workshop so we could further develop the themes and stories that were in the scope of this semester project. 
+
+I would take less technology risks. I tried to squeeze some new, unfamiliar technologies into this project so I could gain experience with them. In Sprint 4, I replaced these risky technologies with familiar alternatives to increase my velocity; however, I wish I had done this in Sprint 2 or earlier. 
+
+Lastly, I would have started breaking stories into tasks in the Sprint Backlog earlier than Sprint 5. I struggled with large user stories in each of my Sprint Backlogs. Based on feedback from the project checkup, I started breaking the stories into tasks in Sprint 5 but I wish I had done this earlier.
+
+## Bookmarks and References
 
 * [Yo + Travis + Github Pages](https://coderwall.com/p/ndaemg) auto deploy a built yeoman project to gh-pages
 * [sbt + Grunt](https://github.com/parkotron/sbt-grunt-task) to call Grunt build from sbt
