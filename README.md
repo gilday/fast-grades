@@ -46,7 +46,7 @@ Use the links to print the generated exam sheet for the class
 
 After filling out the printed exam, scan the exam as an image and upload it using the form.
 
-![Fill Exam](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/whole-sheet.png)
+![Fill Exam](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/whole-sheet.jpg)
 ![Upload Exam](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/sshot-upload-exam.png)
 
 The system responds to the file upload with a grade report screen.
