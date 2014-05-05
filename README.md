@@ -59,12 +59,12 @@ Fast Grades is developed using an agile process based on Scrum and adapted for s
 
 Parts of Scrum I adopted
 
-1. User stories and story writing workshop
+1. User stories and story writing workshops
 2. Story estimation and prioritization in a product backlog
 3. Burndown chart to measure velocity
 4. Sashimi - address all aspects of the system in order to get it minimally working as soon as possible so the product owners can "touch it"
 5. Sprint backlogs with stories broken into tasks for 2 - 3 week sprints. The first sprint was 3 weeks and all later sprints were 2 weeks.
-6. Let the number of stories completed in the previous sprint drive the story points planned for the next sprint
+6. Let the number of stories completed in the previous sprint drive the size of the next sprint
 7. Retrospectives done at the conclusion of each sprint and documented in the sprint backlog
 
 ## Agile Practices
@@ -73,8 +73,8 @@ Parts of Scrum I adopted
 
 **Unit Tests** Using [ScalaTest](fhttp://www.scalatest.org/) for unit testing
 
-**TDD** I will write my tests at the same time (or before) I write new code. To change existing functionality, I will first change the test to verify the new functionality. 
-Currently, the automated testing is done in ScalaTest for the backend code. The front-end JavaScript is not unit tested because I lack experience with the tricky world of JavaScript automated testing and so far the front-end is relatively simple in comparison to the complexity of the backend. 
+**TDD** I will write my tests at the same time (or before) I write new code. To change existing functionality, I first change the test to verify the new functionality. 
+Currently, the automated testing is done in ScalaTest for the backend code. The front-end JavaScript is not unit tested because I lack experience with the tricky world of JavaScript automated testing and the front-end is relatively simple in comparison to the complexity of the backend. 
 
 ![Automated Tests](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/sshot-tests.png)
 
@@ -132,7 +132,7 @@ The vast majority of the user stories were for the teacher role. This makes sens
 
 ### Estimation
 
-As discussed in class, I used relative estimation to arrive at the point values for stories and tasks. Therefore, the points themselves do not correspond to hour in any way; rather, an 8 point story is 4 times as large as a 2 point story. For user stories and tasks, I used a subset of the Fibonacci series: 1, 2, 3, 5, 8, 13 for point values. I chose from this set of values as if it were my hand in planning poker. In retrospect, planning poker might not have been the best estimation technique since I do not have team members to discuss estimations with. Menner's Method is probably better suited for this project. 
+As discussed in class, I used relative estimation to arrive at the point values for stories and tasks. Therefore, the points themselves do not translate to hours; rather, an 8 point story is 4 times as large as a 2 point story. For user stories and tasks, I used a subset of the Fibonacci series: 1, 2, 3, 5, 8, 13 for point values. I chose from this set of values as if it were my hand in planning poker. In retrospect, planning poker might not have been the best estimation technique since I do not have team members to discuss estimations with. Menner's Method is probably better suited for this project. 
 
 For epics, I chose from the set 20, 30, 40, 50, 60, 70, 80, 90, 100. I only estimated one epic because the other epics were a low priority so it was best to defer estimation. 
 
@@ -156,6 +156,8 @@ In hindsight, I would do some things differently if I did this project again.
 I would have held a second story writing workshop after I managed the product owners' expectations. I didn't want to manage their expectations during the workshop because I wanted their ideas to flow freely. Afterwards, I should have held another workshop so we could further develop the themes and stories that were in the scope of this semester project. 
 
 I would take less technology risks. I tried to squeeze some new, unfamiliar technologies into this project so I could gain experience with them. In Sprint 4, I replaced these risky technologies with familiar alternatives to increase my velocity; however, I wish I had done this in Sprint 2 or earlier. 
+
+I wouldn't bother with the Github Issues for tracking tasks; rather, I would keep the product backlog exclusively in the spreadsheet or use a different system such as Jira. I find Jira to be a useful tool and it would save me from fighting with the spreadsheet. 
 
 Lastly, I would have started breaking stories into tasks in the Sprint Backlog earlier than Sprint 5. I struggled with large user stories in each of my Sprint Backlogs. Based on feedback from the project checkup, I started breaking the stories into tasks in Sprint 5 but I wish I had done this earlier.
 
