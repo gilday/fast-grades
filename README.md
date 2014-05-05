@@ -53,6 +53,20 @@ The system responds to the file upload with a grade report screen.
 
 ![Grade Report](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/sshot-grade-report.png)
 
+## Process
+
+Fast Grades is developed using an agile process based on Scrum and adapted for single developer, part-time development. 
+
+Parts of Scrum I adopted
+
+1. User stories and story writing workshop
+2. Story estimation and prioritization in a product backlog
+3. Burndown chart to measure velocity
+4. Sashimi - address all aspects of the system in order to get it minimally working as soon as possible so the product owners can "touch it"
+5. Sprint backlogs with stories broken into tasks for 2 - 3 week sprints. The first sprint was 3 weeks and all later sprints were 2 weeks.
+6. Let the number of stories completed in the previous sprint drive the story points planned for the next sprint
+7. Retrospectives done at the conclusion of each sprint and documented in the sprint backlog
+
 ## Agile Practices
 
 **Automated Build** Using Scala Build Tool ([sbt](http://www.scala-sbt.org/)) to automatically build project artifacts from source
