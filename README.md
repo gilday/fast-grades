@@ -33,25 +33,25 @@ At this stage, the system is a proof of concept which is able to grade an exam.
 
 First step is to create the exam by providing the name and number of questions
 
-![Step One](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/sshot-step-one.png)
+![Step One](https://raw.github.com/gilday/fast-grades/master/docs/sshot-step-one.png)
 
 Next, enter the answer key using the form so the system is aware of the correct answers.
 
-![Step Two](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/sshot-step-two.png)
+![Step Two](https://raw.github.com/gilday/fast-grades/master/docs/sshot-step-two.png)
 
 Use the links to print the generated exam sheet for the class
 
-![Step Three](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/sshot-step-three.png)
-![Print Exam](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/sshot-print-exam.png)
+![Step Three](https://raw.github.com/gilday/fast-grades/master/docs/sshot-step-three.png)
+![Print Exam](https://raw.github.com/gilday/fast-grades/master/docs/sshot-print-exam.png)
 
 After filling out the printed exam, scan the exam as an image and upload it using the form.
 
-![Fill Exam](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/whole-sheet.jpg)
-![Upload Exam](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/sshot-upload-exam.png)
+![Fill Exam](https://raw.github.com/gilday/fast-grades/master/docs/whole-sheet.jpg)
+![Upload Exam](https://raw.github.com/gilday/fast-grades/master/docs/docs/sshot-upload-exam.png)
 
 The system responds to the file upload with a grade report screen.
 
-![Grade Report](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/sshot-grade-report.png)
+![Grade Report](https://raw.github.com/gilday/fast-grades/master/docs/sshot-grade-report.png)
 
 ## Process
 
@@ -76,13 +76,13 @@ Parts of Scrum I adopted
 **TDD** I will write my tests at the same time (or before) I write new code. To change existing functionality, I first change the test to verify the new functionality. 
 Currently, the automated testing is done in ScalaTest for the backend code. The front-end JavaScript is not unit tested because I lack experience with the tricky world of JavaScript automated testing and the front-end is relatively simple in comparison to the complexity of the backend. 
 
-![Automated Tests](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/sshot-tests.png)
+![Automated Tests](https://raw.github.com/gilday/fast-grades/master/docs/sshot-tests.png)
 
 **Continuous Integration** See [Fast Grades on Travis CI](https://travis-ci.org/gilday/fast-grades). With every commit to the `master` branch, a Github post-commit hook tells Travis CI to build the project and run the automated tests.
 
 **Continuous Deployment** The [Travis CI yaml file](https://github.com/gilday/fast-grades/blob/master/.travis.yml) configures Travis CI to push the both the front-end and back-end code to their respective hosting platforms. The front-end web code is hosted on Github pages at http://gilday.github.io/fast-grades. The backend scala code is hosted on Heroku at http://fast-grades.herokuapp.com/
 
-![Continuous Integration](https://raw.githubusercontent.com/gilday/fast-grades/final-report/docs/sshot-travis.png)
+![Continuous Integration](https://raw.github.com/gilday/fast-grades/master/docs/sshot-travis.png)
 
 ## Definition of Done
 
