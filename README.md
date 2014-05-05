@@ -1,4 +1,4 @@
-# Auto Grader
+# Fast Grades
 
 [![Build status](https://travis-ci.org/gilday/fast-grades.png?branch=master)](https://travis-ci.org/gilday/fast-grades)
 
@@ -14,11 +14,11 @@ Will use agile methods and practices to develop a multiple choice grading system
 
 My friends asked me if I could make such a tool. They are public school teachers and they dislike their current grading system.
 
-Their current system is specialized hardware that scans proprietary exam sheets. The biggest problem with this system is the manual scanning process: the exams are fed through the scanning hardware sequentially. The second problem with this system is its cost. Newer hardware models can scan batches of exams, but the are very expensive. Furthermore, the exam sheets that students mark their answers on is a proprietary format and it costs significantly more than the paper it's printed on.
+Their current system is specialized hardware that scans proprietary exam sheets. The biggest problem with this system is the manual scanning process: the exams are fed through the scanning hardware sequentially. The second problem with this system is its cost. Newer hardware models can scan batches of exams, but the are very expensive. Furthermore, the exam sheets that students mark their answers on is a proprietary format and it costs significantly more than the paper it's printed on. In fact, sometimes the school runs out of these exam sheets and does not have a budget to buy more.
 
 My friends want to use a combination of software and the school's existing Xerox machine to implement an affordable, automated grading system. Their Xerox machine is capable of scanning stacks of papers and it emails the digitized pages to teachers' inboxes. Once the exams have been digitized, teachers will use the proposed computer vision software to process the exams. Furthermore, the Xerox machine is also a printer so teachers will use it to print exam sheets instead of buying the costly, proprietary sheets used in the current system.
 
-I am proposing to build the exam processing software and the exam sheet format for this system. My friends have agreed to play the role of the Product Owner. I will meet with the Product Owner to create a prioritized backlog for a minimally operational system. I intend to build on FOSS computer vision software to deliver the minimally functional first release. After the first release of this system, we can start to incorporate teacher feedback to grow the backlog and determine the features and enhancements we would like to have in subsequent releases.
+I am proposing to build the exam processing software and the exam sheet format for this system. My friends have agreed to play the role of the Product Owner. I will meet with the Product Owner to create a prioritized backlog for a minimally operational system. I intend to build on FOSS computer vision software to deliver the minimally functional proof of concept. After the first release of this system, we can start to incorporate teacher feedback to grow the backlog and determine the features and enhancements we would like to have in subsequent releases.
 
 
 ## Simple Model
